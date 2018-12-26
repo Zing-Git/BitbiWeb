@@ -9,6 +9,8 @@ import { PAGES_ROUTES } from './pages.routes';
 import { FormsModule } from '@angular/forms';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 
+import { ChartsModule } from 'ng2-charts';
+
 @NgModule({
     declarations: [
         DashboardComponent,
@@ -27,7 +29,8 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
 
         SharedModule,
         PAGES_ROUTES,
-        FormsModule
+        FormsModule,
+        ChartsModule
     ]
 })
 

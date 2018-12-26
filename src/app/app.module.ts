@@ -12,6 +12,8 @@ import { RegisterComponent } from './login/register.component';
 import { PagesModule } from './pages/pages.module';
 import { FormsModule } from '@angular/forms';
 
+import { ServiceModule } from './services/service.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
     //MaterialModule
   ],
-  providers: [],
+  providers: [ ServiceModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
