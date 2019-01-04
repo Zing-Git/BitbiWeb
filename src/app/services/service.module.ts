@@ -9,11 +9,13 @@ import {
   UtilidadesService
 }
   from './service.index';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [
     SharedService,

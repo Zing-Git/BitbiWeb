@@ -10,15 +10,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RegisterComponent } from './login/register.component';
 import { PagesModule } from './pages/pages.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ServiceModule } from './services/service.module';
+import { SharedModule } from './shared/shared.module';
+import { PagesComponent } from './pages/pages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PagesComponent
     /*NopagefoundComponent,
     DashboardComponent,
     ProgressComponent,
@@ -26,19 +29,24 @@ import { ServiceModule } from './services/service.module';
     HeaderComponent,
     SidebarComponent,
     BreadcrumbsComponent,*/
-    
-    
+
+
   ],
   imports: [
-    BrowserModule,
+  
+  BrowserModule,
+    APP_ROUTES,
+    FormsModule,
+    ReactiveFormsModule,
+    ServiceModule,
+    SharedModule,
+
     BrowserAnimationsModule,
     FlexLayoutModule,
-    APP_ROUTES,
-    PagesModule,
     FormsModule
     //MaterialModule
   ],
-  providers: [ ServiceModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

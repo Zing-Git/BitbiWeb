@@ -2,9 +2,31 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
-  production: false
-};
+export var environment = {
+  //BASE_URL: 'https://zpos.herokuapp.com',
+  BASE_URL: 'http://18.217.143.92:3000',
+  NOMBRE_USUARIO: ' ',
+  NOMBRE_COMERCIO: ' ',
+  RUBRO_COMERCIO: ' ',
+  ID_USUARIO:'',
+  COMERCIO_ID: '',
+  PROVEEDOR_ID: '',
+  PROVEEDOR:'',
+  TOKEN:' ',
+  COMERCIO_LOGIN:'',
+  APIKEY: ' ',
+  PEDIDO: ' ',
+  PEDIDOS:' ',
+  CARRITO: ' ',
+  INVITACIONES: ' ',
+  NEWLOGIN: ' ',
+  NOMBRE_PROVEEDOR: ' ',
+  RUBRO_PROVEEDOR: ' ',
+  IDPUSH: ' ',
+  MENSAJE_RECHAZO:' ',
+  handleNotificationReceived: ' ',
+  handleNotificationOpened: ' '
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

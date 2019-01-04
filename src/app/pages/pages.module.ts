@@ -19,7 +19,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
         DashboardComponent,
         ProgressComponent,
         Graficas1Component,
-        PagesComponent,
+        //PagesComponent,
         IncrementadorComponent,
         PromesasComponent,
         RxjsComponent
@@ -27,8 +27,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     exports: [
         DashboardComponent,
         ProgressComponent,
-        Graficas1Component,
-        PagesComponent
+        Graficas1Component
     ],
     imports: [
 
