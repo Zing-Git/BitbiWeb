@@ -1,3 +1,5 @@
+export { LoginGuardGuard } from './guards/login-guard.guard';
+
 export { SharedService } from './shared/shared.service';
 export { SidebarService } from './sidebar/sidebar.service';
 export { ComercioService } from './comercio/comercio.service';

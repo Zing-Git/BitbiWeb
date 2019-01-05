@@ -19,11 +19,15 @@ export class LoginComponent implements OnInit {
 
   newLogin: LoginModel = new LoginModel();
   recuerdame: boolean = false;
-
+  nombreUsuario: string;
   constructor(private loginService: LoginService, public router: Router) { }
 
   ngOnInit() {
     //init_plugins();
+    this.nombreUsuario = localStorage.getItem('usuario') || '';  //si retorna undefined le pone en blanco
+    if(this.nombreUsuario.length > 1){
+      this.recuerdame = true;
+    }
   }
 
   getLogin(forma: NgForm) {
@@ -36,12 +40,12 @@ export class LoginComponent implements OnInit {
 
     console.log(this.newLogin);
 
-    this.loginService.getLoginProveedor(this.newLogin).pipe(
+    this.loginService.getLoginProveedor(this.newLogin,this.recuerdame).pipe(
       retry(2)
-    ).subscribe(resultProveedor => {
-      console.log(resultProveedor);
-      if (resultProveedor['ok'] == true) {
-        console.log(resultProveedor);
+    ).subscribe(correcto => {
+      
+      if (correcto) {
+        this.router.navigate(['/dashboard'])
       } else {
         Swal('Atención', 'Vuelva a ingresar las credenciales', 'error');
 
