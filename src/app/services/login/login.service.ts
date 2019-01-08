@@ -55,6 +55,7 @@ export class LoginService {
     this.usuario = null;
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
+    localStorage.removeItem('idProveedor');
 
     this.router.navigate(['/login']);
   }
@@ -72,12 +73,13 @@ export class LoginService {
     obs.pipe(
       retry(2)
     ).subscribe();  //permite volver a intentar, en este caso dos veces
+    
     return this.http.post<any[]>(this.urlPostGetComercioLogin, parametros, cudOptions);
 
   }
 
   getLoginProveedor(loginModel: LoginModel, recordar: boolean = false): Observable<any> {
-
+console.log('estoy en servico');
     console.log(loginModel);
     const parametros = {
       nombreUsuario: loginModel.nombreUsuario,
@@ -92,10 +94,9 @@ export class LoginService {
 
     const newSession = Object.assign({}, parametros);
 
-    return this.http.post<any[]>(this.urlPostGetProveedorLogin, newSession, cudOptions)
-      .map((resp: any) => {
+    return this.http.post<any[]>(this.urlPostGetProveedorLogin, newSession, cudOptions).map((resp: any) => {
         console.log(resp);
-        localStorage.setItem('idProveedor', resp.usuario._id);
+        localStorage.setItem('idProveedor', resp.proveedorDB[0]._id);
         localStorage.setItem('token', resp.usuario.token);
         localStorage.setItem('proveedor', JSON.stringify(resp.proveedorDB));
         localStorage.setItem('usuarioCompleto', JSON.stringify(resp.usuario));
@@ -104,6 +105,5 @@ export class LoginService {
         this.token = resp.usuario.token;
         return true;
       });
-
   }
 }

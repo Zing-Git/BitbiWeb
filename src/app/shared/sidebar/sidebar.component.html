@@ -2,57 +2,64 @@
 <!-- Left Sidebar - style you can find in sidebar.scss  -->
 <!-- ============================================================== -->
 <aside class="left-sidebar">
-    <!-- Sidebar scroll-->
-    <div class="scroll-sidebar">
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav">
-            <ul id="sidebarnav">
-                <li class="user-profile">
-                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><!--<img src="../assets/images/users/profile.png" alt="user" />--><i class="fas fa-user fa-7x"></i><span class="hide-menu">Steave Jobs </span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="javascript:void()">My Profile </a></li>
-                        <!-- <li><a href="javascript:void()">My Balance</a></li>
+  <!-- Sidebar scroll-->
+  <div class="scroll-sidebar">
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav">
+      <ul id="sidebarnav">
+        <li class="user-profile">
+          <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+            <!--<img src="../assets/images/users/profile.png" alt="user" />--><i class="fas fa-user fa-7x"></i><span
+              class="hide-menu">Steave Jobs </span></a>
+          <ul aria-expanded="false" class="collapse">
+            <li><a routerLinkActive="active" routerLink="" href="javascript:void()">My Profile </a></li>
+            <!-- <li><a href="javascript:void()">My Balance</a></li>
                                 <li><a href="javascript:void()">Inbox</a></li>
                                 <li><a href="javascript:void()">Account Setting</a></li> -->
-                        <li><a class="pointer" (click)="loginServices.logout()">Logout</a></li>
-                    </ul>
-                </li>
-                <li class="nav-devider"></li>
-                <li class="nav-small-cap">GESTION</li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-cart"></i><span class="hide-menu">Pedidos <span class="label label-rouded label-themecolor pull-right">4</span></span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="index.html">Listar </a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-package-variant-closed"></i><span class="hide-menu">Productos</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="app-calendar.html">Listar</a></li>
-                        <li><a href="app-chat.html">Importar/Exportar</a></li>
-                        <li><a href="app-ticket.html">Gestion de Stock</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Clientes</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="app-email.html">Listar</a></li>
-                        <li><a href="app-email-detail.html">Nuevo</a></li>
-                        <li><a href="app-compose.html">Exportar</a></li>
-                    </ul>
-                </li>
-                <li class="nav-small-cap">MARKETING</li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-card-details"></i><span class="hide-menu">Invitaciones</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="form-basic.html">Listar</a></li>
-                        <li><a href="form-layout.html">Enviar</a></li>
-                    </ul>
-                </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-volume-high"></i><span class="hide-menu">Publicidad</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="table-basic.html">Mis publicaciones</a></li>
-                        <li><a href="table-layout.html">Nueva</a></li>
-                    </ul>
-                </li>
+            <li><a class="pointer" (click)="loginServices.logout()">Logout</a></li>
+          </ul>
+        </li>
+        <li class="nav-devider"></li>
+        <li class="nav-small-cap">GESTION</li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-cart"></i><span
+              class="hide-menu">Pedidos <span class="label label-rouded label-themecolor pull-right">4</span></span></a>
+          <ul aria-expanded="true" class="collapse">
+            <li><a href="#/pedidos">Listar </a></li>
+          </ul>
+        </li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-package-variant-closed"></i><span
+              class="hide-menu">Productos</span></a>
+          <ul aria-expanded="false" class="collapse">
+            <li><a href="app-calendar.html">Listar</a></li>
+            <li><a href="app-chat.html">Importar/Exportar</a></li>
+            <li><a href="app-ticket.html">Gestion de Stock</a></li>
+          </ul>
+        </li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+              class="hide-menu">Clientes</span></a>
+          <ul aria-expanded="false" class="collapse">
+            <li><a href="app-email.html">Listar</a></li>
+            <li><a href="app-email-detail.html">Nuevo</a></li>
+            <li><a href="app-compose.html">Exportar</a></li>
+          </ul>
+        </li>
+        <li class="nav-small-cap">MARKETING</li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-card-details"></i><span
+              class="hide-menu">Invitaciones</span></a>
+          <ul aria-expanded="false" class="collapse">
+            <li><a href="form-basic.html">Listar</a></li>
+            <li><a href="form-layout.html">Enviar</a></li>
+          </ul>
+        </li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-volume-high"></i><span
+              class="hide-menu">Publicidad</span></a>
+          <ul aria-expanded="false" class="collapse">
+            <li><a href="table-basic.html">Mis publicaciones</a></li>
+            <li><a href="table-layout.html">Nueva</a></li>
+          </ul>
+        </li>
 
-                <!--      <li class="nav-small-cap">ESTADISTICAS</li>
+        <!--      <li class="nav-small-cap">ESTADISTICAS</li>
 
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file-chart"></i><span class="hide-menu">Pedidos</span></a>
                     <ul aria-expanded="false" class="collapse">
@@ -72,11 +79,11 @@
                         <li><a href="map-vector.html">Zonas Impactados</a></li>
                     </ul>
                 </li> -->
-            </ul>
-        </nav>
-        <!-- End Sidebar navigation -->
-    </div>
-    <!-- End Sidebar scroll-->
+      </ul>
+    </nav>
+    <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
 </aside>
 <!-- ============================================================== -->
 <!-- End Left Sidebar - style you can find in sidebar.scss  -->
