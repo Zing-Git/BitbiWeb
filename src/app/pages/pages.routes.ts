@@ -4,17 +4,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { LoginGuardGuard } from './../services/guards/login-guard.guard';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 const pagesRoutes: Routes = [
     {
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [ LoginGuardGuard ],
-        data: { titulo: 'Dashboard' }
+        data: { titulo: 'Principal' }
     },
-    { path: 'progress', component: ProgressComponent, data: { titulo: 'ProgressBars' } },
+    { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress' } },
     { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Gráficas' } },
-   // { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
+    { path: 'pedidos', component: PedidosComponent, data: { titulo: 'Pedidos' } },
     //{ path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs' } },
     //{ path: 'account-settings', component: AccoutSettingsComponent, data: { titulo: 'Ajustes de Tema' } },
     //{ path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },

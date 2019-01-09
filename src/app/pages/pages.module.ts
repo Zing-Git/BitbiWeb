@@ -12,6 +12,7 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
 import { ChartsModule } from 'ng2-charts';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 //cada carpeta tiene un modulo para trabajr ordenadamente
 @NgModule({
@@ -22,7 +23,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
         //PagesComponent,
         IncrementadorComponent,
         PromesasComponent,
-        RxjsComponent
+        RxjsComponent,
+        PedidosComponent
     ],
     exports: [
         DashboardComponent,
