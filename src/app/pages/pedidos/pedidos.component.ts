@@ -27,6 +27,7 @@ export class PedidosComponent implements OnInit {
 
   inicial: string;
 
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   constructor(public proveedorServices: ProveedorService) {
     this.getPedidosProveedor();
   }

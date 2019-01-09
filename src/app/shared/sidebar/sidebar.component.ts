@@ -9,10 +9,23 @@ import { SidebarService } from './../../services/service.index';
 })
 export class SidebarComponent implements OnInit {
 
+  usuario: any;
+  nombre: string;
+  menu: any;
+
   constructor(public sidebarServices: SidebarService,
-     public loginServices: LoginService) { }
+    public loginServices: LoginService) {
+    this.getUusuario();
+  }
 
   ngOnInit() {
+
+  }
+
+  getUusuario() {
+    this.usuario = JSON.parse(localStorage.getItem('proveedor')); 
+    this.nombre = this.usuario[0].entidad.razonSocial
+    this.menu = this.sidebarServices.getMenu();
   }
 
 }

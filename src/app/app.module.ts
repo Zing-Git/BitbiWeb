@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceModule } from './services/service.module';
 import { SharedModule } from './shared/shared.module';
 import { PagesComponent } from './pages/pages.component';
+import { MaterialModule } from './1material.comp';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { PagesComponent } from './pages/pages.component';
 
     BrowserAnimationsModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
     //MaterialModule
   ],
   providers: [],

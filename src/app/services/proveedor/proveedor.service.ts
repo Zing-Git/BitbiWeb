@@ -4,7 +4,6 @@ import { environment as ENV } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { retry } from 'rxjs/operators';
-import { BrowserAnimationBuilder } from '@angular/platform-browser/animations/src/animation_builder';
 
 const cudOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
