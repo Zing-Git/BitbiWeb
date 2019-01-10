@@ -7,6 +7,7 @@ import {
   MatListModule,
   MatButtonModule,
   MatCardModule,
+  MatFormFieldModule,
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +23,8 @@ imports: [
   MatButtonModule,
   MatSidenavModule,
   MatIconModule,
-  MatListModule
+  MatListModule,
+  MatFormFieldModule
   ],
   exports: [
     LayoutModule,
@@ -31,7 +33,8 @@ imports: [
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule
   ]
  })
 export class MaterialModule {}

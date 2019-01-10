@@ -1,6 +1,6 @@
 export class ProductoModel {
 
-    idProveedor: string;
+    idProveedor: string= localStorage.getItem('idProveedor');
     productos: [
         {
             codigoProveedor: string; //"1",

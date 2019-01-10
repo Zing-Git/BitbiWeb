@@ -1,9 +1,36 @@
-<div class="col-12">
-    <div class="card">
-        <div class="card-body">
-             
-            <p>Productos</p>
-             
-        </div>
+<div>
+
+
+  <form [formGroup]="productoForm" (ngSubmit)="postProducto()">
+    <div class="form-group">
+      
+      <input type="text" class="form-control" formControlName="codigoProveedor" aria-describedby="emailHelp"
+        placeholder="Ingrese Código">
+      <small id="emailHelp" class="form-text text-muted">Puede ingresar cualquier código creado por Usted.</small>
     </div>
+
+    <div class="form-group"> 
+        <input type="text" formControlName="nombreProducto" class="form-control" placeholder="Ingrese Nombre del producto">
+      </div>
+    <div class="form-group"> 
+        <input type="number" formControlName="precioProveedor" class="form-control" placeholder="Ingrese Precio">
+       </div>
+    <div class="form-group"> 
+        <input type="number" formControlName="precioSugerido" class="form-control" placeholder="Ingrese Precio Sugerido">
+      </div>
+    <div class="form-group">
+        <input type="text" formControlName="categoria" class="form-control" placeholder="Ingrese Categoría">
+     
+    </div>
+    <div class="form-group">
+        <input type="text" formControlName="subcategoria" class="form-control" placeholder="Ingrese Sub Categoría">
+       </div>
+    <div class="form-group">
+        <input type="number" formControlName="stock" class="form-control" placeholder="Ingrese Stock">
+     </div>
+    <div class="form-group">
+        <input type="text" formControlName="unidadMedida" class="form-control" placeholder="Ingrese Unidad de Medida">
+      </div>
+    <button type="submit" [disabled]="!productoForm.valid" class="btn btn-primary">Cargar Producto</button>
+  </form>
 </div>

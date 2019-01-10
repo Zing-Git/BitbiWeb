@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
@@ -33,16 +36,16 @@ import { ProductoComponent } from './producto/producto.component';
         DashboardComponent,
         ProgressComponent,
         Graficas1Component,
-       // MaterialModule
+        // MaterialModule
     ],
     imports: [
-    
-    CommonModule,
+        ReactiveFormsModule,
+        CommonModule,
         SharedModule,
         PAGES_ROUTES,
         FormsModule,
         ChartsModule,
-       MaterialModule
+        MaterialModule
     ]
 })
 
