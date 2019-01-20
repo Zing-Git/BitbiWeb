@@ -9,13 +9,14 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RegisterComponent } from './login/register.component';
-import { PagesModule } from './pages/pages.module';
+import { DataTablesModule } from 'angular-datatables';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ServiceModule } from './services/service.module';
 import { SharedModule } from './shared/shared.module';
 import { PagesComponent } from './pages/pages.component';
 import { MaterialModule } from './1material.comp';
+
 
 @NgModule({
   declarations: [
@@ -30,8 +31,6 @@ import { MaterialModule } from './1material.comp';
     HeaderComponent,
     SidebarComponent,
     BreadcrumbsComponent,*/
-
-
   ],
   imports: [
   
@@ -45,7 +44,7 @@ import { MaterialModule } from './1material.comp';
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
-    //MaterialModule
+    //DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

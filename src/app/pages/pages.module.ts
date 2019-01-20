@@ -17,7 +17,12 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { MaterialModule } from '../1material.comp';
-import { ProductoComponent } from './producto/producto.component';
+
+import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import { ModalProductoComponent } from './producto/modal/modal/modal-producto.component';
+import { DataTablesModule } from 'angular-datatables';
+import { AltaProductoComponent } from './producto/alta/alta-producto.component';
+import { ListadoProductoComponent } from './producto/listado/listado-producto.component';
 
 //cada carpeta tiene un modulo para trabajr ordenadamente
 @NgModule({
@@ -25,12 +30,13 @@ import { ProductoComponent } from './producto/producto.component';
         DashboardComponent,
         ProgressComponent,
         Graficas1Component,
-        //PagesComponent,
+        ModalProductoComponent,
         IncrementadorComponent,
         PromesasComponent,
         RxjsComponent,
         PedidosComponent,
-        ProductoComponent
+        AltaProductoComponent,
+        ListadoProductoComponent
     ],
     exports: [
         DashboardComponent,
@@ -39,14 +45,20 @@ import { ProductoComponent } from './producto/producto.component';
         // MaterialModule
     ],
     imports: [
-        ReactiveFormsModule,
+        DataTablesModule,
+        ReactiveFormsModule,        
         CommonModule,
         SharedModule,
         PAGES_ROUTES,
         FormsModule,
         ChartsModule,
-        MaterialModule
-    ]
+        MaterialModule,
+        NgxSmartModalModule.forRoot()
+    ],
+    providers: [
+
+        NgxSmartModalService
+    ],
 })
 
 export class PagesModule {

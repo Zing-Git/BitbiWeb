@@ -25,7 +25,8 @@ export var environment = {
   IDPUSH: ' ',
   MENSAJE_RECHAZO:' ',
   handleNotificationReceived: ' ',
-  handleNotificationOpened: ' '
+  handleNotificationOpened: ' ',
+  PRODUCTOS: ''
 }
 
 /*

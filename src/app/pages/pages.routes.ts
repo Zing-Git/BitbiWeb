@@ -5,7 +5,9 @@ import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { LoginGuardGuard } from './../services/guards/login-guard.guard';
 import { PedidosComponent } from './pedidos/pedidos.component';
-import { ProductoComponent } from './producto/producto.component';
+import { AltaProductoComponent } from './producto/alta/alta-producto.component';
+import { ListadoProductoComponent } from './producto/listado/listado-producto.component';
+
 
 const pagesRoutes: Routes = [
     {
@@ -17,7 +19,8 @@ const pagesRoutes: Routes = [
     { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress' } },
     { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Gráficas' } },
     { path: 'pedidos', component: PedidosComponent, data: { titulo: 'Pedidos' } },
-    { path: 'producto', component: ProductoComponent, data: { titulo: 'Producto' } },
+    { path: 'producto', component: AltaProductoComponent, data: { titulo: 'Producto' } },
+    { path: 'listado-producto', component: ListadoProductoComponent, data: { titulo: 'Listado de Producto' } },
     //{ path: 'account-settings', component: AccoutSettingsComponent, data: { titulo: 'Ajustes de Tema' } },
     //{ path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },
     //{ path: 'busqueda/:termino', component: BusquedaComponent, data: { titulo: 'Buscador' } },

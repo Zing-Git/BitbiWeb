@@ -12,16 +12,29 @@ export class SidebarService {
       submenu: [
         { titulo: 'Principal', url: '/dashboard' },
         { titulo: 'Pedidos', url: '/pedidos' },
-        { titulo: 'Producto', url: '/producto' },
+        { titulo: 'Producto', url: '/producto' },  //listadoProducto
+        { titulo: 'Listado Productos', url: '/listadoProducto' },  //listadoProducto
         { titulo: 'Gráficas', url: '/graficas1' },
         { titulo: 'Progress', url: '/progress' }
       ]
     }
 
   ];
+
+  otroMenu: any =[
+    { titulo: 'Principal', icono: 'fas fa-ankh', url: '/dashboard' },
+        { titulo: 'Pedidos', icono: 'fas fa-ankh', url: '/pedidos' },
+        { titulo: 'Producto', icono: 'fas fa-ankh', url: '/producto' },
+        { titulo: 'Listado de Productos', icono: 'fas fa-ankh', url: '/listado-producto' },
+        { titulo: 'Gráficas', icono: 'fas fa-ankh', url: '/graficas1' },
+        { titulo: 'Progress', icono: 'fas fa-ankh', url: '/progress' }
+  ]
   constructor() { }
   
   getMenu(): any {
     return this.menu;
+  }
+  getOtroMenu():any{
+    return this.otroMenu;
   }
 }

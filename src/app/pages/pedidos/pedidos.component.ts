@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProveedorService } from 'src/app/services/service.index';
 import { retry } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-pedidos',
@@ -28,11 +29,19 @@ export class PedidosComponent implements OnInit {
   inicial: string;
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+
+  //datatable
+  dtOptions: DataTables.Settings = {};
+  
+  
   constructor(public proveedorServices: ProveedorService) {
     this.getPedidosProveedor();
   }
 
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
   }
 
   getPedidosProveedor() {

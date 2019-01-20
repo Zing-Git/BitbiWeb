@@ -1,0 +1,45 @@
+<div class="container">
+  <table  id="mytable" class="table table-bordred table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Codigo Proveeedor</th>
+        <th scope="col"> Producto</th>
+        <th scope="col"> Stock</th>      
+                         <th>Detalle</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let producto of productos; ">
+      <tr>
+        <th scope="row"></th>
+        <td>{{producto.codigoProveedor}}  </td>  <!--| date: 'dd/MM/yyyy'}}--> 
+        <td>{{ producto.categoria}}</td>        
+        <td>{{producto.nombreProducto}}</td>
+        <td>{{producto.stock}}</td>
+        <td><button type="button" class="btn btn-info">Detalle</button></td>
+       
+      </tr>
+  <!--_id: "5c36ceda7ab87e001589e87c"
+​​​
+categoria: "VERDURAS"
+​​​
+codigoProveedor: "A-1"
+​​​
+imagenes: Array []
+​​​
+nombreProducto: "PAPA ANDINA"
+​​​
+precioProveedor: 12
+​​​
+precioSugerido: 15
+​​​
+stock: -63
+​​​
+subcategoria: "VERDURAS"
+​​​
+unidadMedida: "BOLSA"-->
+     
+    </tbody>
+  </table>
+</div>

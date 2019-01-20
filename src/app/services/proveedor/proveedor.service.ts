@@ -16,7 +16,7 @@ export class ProveedorService {
 
   private urlBase = ENV.BASE_URL;
   private urlGetPedidos = this.urlBase + '/pedido/listar_pedidos_proveedor/';
-  private urlGetPedidosProveedor = this.urlBase + '/pedido/listar_pedidos_proveedor/';
+  private urlGetPedidosProveedor = this.urlBase + '(/pedido/listar_pedidos_proveedor_v2_stock/';  //'/pedido/listar_pedidos_proveedor/';
   ///pedido/listar_pedidos_pendientes/?idProveedor=5bbdf4bd39f9bf12605c6bb2
 
   private pedidos = new Array();

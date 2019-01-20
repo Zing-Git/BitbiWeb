@@ -12,6 +12,7 @@ export class SidebarComponent implements OnInit {
   usuario: any;
   nombre: string;
   menu: any;
+  otroMenu : any;
 
   constructor(public sidebarServices: SidebarService,
     public loginServices: LoginService) {
@@ -26,6 +27,8 @@ export class SidebarComponent implements OnInit {
     this.usuario = JSON.parse(localStorage.getItem('proveedor')); 
     this.nombre = this.usuario[0].entidad.razonSocial
     this.menu = this.sidebarServices.getMenu();
+
+    this.otroMenu = this.sidebarServices.getOtroMenu();
   }
 
 }

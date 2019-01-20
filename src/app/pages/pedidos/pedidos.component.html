@@ -1,11 +1,14 @@
-
-<table class="table">
+<div class="container">
+<table  id="mytable" class="table table-bordred table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Estado</th>
       <th scope="col">Fecha</th>
       <th scope="col">Total</th>
+     
+                      
+                       <th>Delete</th>
     </tr>
   </thead>
   <tbody *ngFor="let pedido of pedidos; ">
@@ -14,10 +17,14 @@
       <td>{{ pedido.estadoPedido}}</td>
       <td>{{pedido.fechaEntrega   | date: 'dd/MM/yyyy'}}</td>
       <td>{{pedido.totalPedido}}</td>
-      <td><button type="button" class="btn btn-link">Link</button></td>
+      <td><button type="button" class="btn btn-info">Detalle</button></td>
+     
     </tr>
+
    
   </tbody>
 </table>
+</div>
+
 
 
