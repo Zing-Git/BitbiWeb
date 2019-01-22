@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
-    selector: 'app-modal-producto',
-    templateUrl: './modal-producto.component.html',
+    selector: 'app-modal-xlsx-producto',
+    templateUrl: './modal-xlsx-producto.component.html',
     styles: []
 })
-export class ModalProductoComponent implements OnInit {
+export class ModalXlsxProductoComponent implements OnInit {
     procesarData: boolean = false;
     data: any;
     constructor(public ngxSmartModalService: NgxSmartModalService) { }

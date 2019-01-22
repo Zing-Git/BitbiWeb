@@ -19,10 +19,16 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { MaterialModule } from '../1material.comp';
 
 import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
-import { ModalProductoComponent } from './producto/modal/modal/modal-producto.component';
+
 import { DataTablesModule } from 'angular-datatables';
 import { AltaProductoComponent } from './producto/alta/alta-producto.component';
 import { ListadoProductoComponent } from './producto/listado/listado-producto.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ModalXlsxProductoComponent } from './producto/modal/modal-xlsx/modal-xlsx-producto.component';
+import { ModalListadoProductoComponent } from './producto/modal/modal-listado-producto/modal-listado-producto.component';
+
+//spinner
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 //cada carpeta tiene un modulo para trabajr ordenadamente
 @NgModule({
@@ -30,13 +36,14 @@ import { ListadoProductoComponent } from './producto/listado/listado-producto.co
         DashboardComponent,
         ProgressComponent,
         Graficas1Component,
-        ModalProductoComponent,
+        ModalXlsxProductoComponent,
         IncrementadorComponent,
         PromesasComponent,
         RxjsComponent,
         PedidosComponent,
         AltaProductoComponent,
-        ListadoProductoComponent
+        ListadoProductoComponent,
+        ModalListadoProductoComponent
     ],
     exports: [
         DashboardComponent,
@@ -46,6 +53,8 @@ import { ListadoProductoComponent } from './producto/listado/listado-producto.co
     ],
     imports: [
         DataTablesModule,
+        Ng2SearchPipeModule,
+        
         ReactiveFormsModule,        
         CommonModule,
         SharedModule,
@@ -53,7 +62,8 @@ import { ListadoProductoComponent } from './producto/listado/listado-producto.co
         FormsModule,
         ChartsModule,
         MaterialModule,
-        NgxSmartModalModule.forRoot()
+        NgxSmartModalModule.forRoot(),
+        Ng4LoadingSpinnerModule.forRoot()
     ],
     providers: [
 

@@ -7,7 +7,8 @@ import 'hammerjs';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { ModalProductoComponent } from '../modal/modal/modal-producto.component';
+import { ModalXlsxProductoComponent } from './../modal/modal-xlsx/modal-xlsx-producto.component';
+
 
 
 type AOA = any[][];
@@ -19,7 +20,7 @@ type AOA = any[][];
 })
 export class AltaProductoComponent implements OnInit {
 
-  @ViewChild(ModalProductoComponent) hijo: ModalProductoComponent;
+  @ViewChild(ModalXlsxProductoComponent) hijo: ModalXlsxProductoComponent;
   productoModel: any = new ProductoModel();
 
   productoForm: FormGroup;

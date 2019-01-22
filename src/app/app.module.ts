@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'; //importing the module
+
 
 import { APP_ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
@@ -43,8 +45,7 @@ import { MaterialModule } from './1material.comp';
 
     BrowserAnimationsModule,
     FlexLayoutModule,
-    FormsModule,
-    //DataTablesModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

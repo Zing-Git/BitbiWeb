@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 //declare function init_plugins();
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-pages',

@@ -1,0 +1,70 @@
+
+<ngx-smart-modal #listadoModal identifier="listadoModal" customClass="reveal">
+  <div class="card-body">
+    <form ngNativeValidate class="form-horizontal form-material" [formGroup]="productoForm" (ngSubmit)="modificar()">
+
+      <h3 class="box-title m-t-40 m-b-0">Detalle de Producto</h3>
+      <div class="form-group">
+        <div class="col-xs-6">
+          <label for="name">codigo</label>
+          <input formControlName="codigoProveedor" class="form-control" type="text"  disabled  placeholder="codigo de Proveedor">
+        </div>
+      </div>
+      <div class="form-group ">
+        <div class="col-xs-6">
+          <label for="name">Categoria</label>
+          <input formControlName="categoria" class="form-control" type="text"  disabled placeholder="categoria">
+        </div>
+      </div>
+      <div class="form-group ">
+        <div class="col-xs-6">
+          <label for="name">sub categoria</label>
+          <input formControlName="subcategoria" class="form-control" type="text"  disabled  placeholder="subcategoria">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-6">
+          <label for="name">Producto</label>
+          <input formControlName="nombreProducto" class="form-control" type="text"  disabled  placeholder="Nombre de Producto">
+        </div>
+      </div>
+      <div class="form-group ">
+        <div class="col-xs-6">
+          <label for="name">Precio Proveedor</label>
+          <input formControlName="precioProveedor" class="form-control" type="number"  disabled  placeholder="Precio de Proveedor">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-6">
+          <label for="name">Precio Sugerido</label>
+          <input formControlName="precioSugerido" class="form-control" type="number"  disabled  placeholder="Precio Sugerido">
+        </div>
+      </div>
+      <div class="form-group ">
+        <div class="col-xs-6">
+          <label for="name">stock</label>
+          <input formControlName="stock" class="form-control" type="number"  disabled  placeholder="stock">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-6">
+          <label for="name">Unidad de Medida</label>
+          <input formControlName="unidadMedida" class="form-control" type="text"  disabled  placeholder="​​​Unidad de Medida">
+        </div>
+      </div>
+
+      <!--<div class="form-group text-center m-t-20">
+        <div class="col-xs-12">
+          <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit"
+            [disabled]="!productoForm.valid">Modificar</button>
+        </div>
+      </div>-->
+
+    </form>
+  </div>
+  <div class="form-row text-right">
+    <div class="col-12">
+      <span class="btn btn-outline-danger" (click)="cerrarModal()">Cerrar</span>
+    </div>
+  </div>
+</ngx-smart-modal>

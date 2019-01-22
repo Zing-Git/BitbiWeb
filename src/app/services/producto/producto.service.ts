@@ -19,6 +19,7 @@ export class ProductoService {
   private urlBase = ENV.BASE_URL;
   private urlPostNuevoProducto = this.urlBase + '/producto/nuevo/';
   private urlPostGetProductos = this.urlBase + '/producto/obtener_productos/';
+  private urlPostActualizarProductos = this.urlBase + '/producto/actualizar/';
 
   //private idProveedor: string;
 
@@ -40,17 +41,33 @@ export class ProductoService {
       });
   }
 
-  postGetProductos(): Observable<any>{
-    const newSession = Object.assign({}, this.idProveedor);
+  postGetProductos(): Observable<any> {
+    localStorage.removeItem('listadoProductos');
     const url = this.urlPostGetProductos + '?idProveedor=' + this.idProveedor;
     return this.http.get<any>(url, cudOptions)
       .map(result => {
-        console.log(result);
+
         if (result['ok']) {
           localStorage.setItem('listadoProductos', JSON.stringify(result['productos']));
           return true;
         }
         else {
+          
+          return false;
+        }
+      });
+  }
+
+  postActualizarProductos(productos: any): Observable<any> {
+    const parametros = {
+      productos: productos
+    };
+
+    return this.http.post<any[]>(this.urlPostActualizarProductos, parametros, cudOptions)
+      .map(result => {
+        if (result['ok']) {
+          return true;
+        } else {
           return false;
         }
       });
