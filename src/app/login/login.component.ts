@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/service.index';
 import { LoginModel } from '../modelos/loginModel';
 import { retry } from 'rxjs/operators';
-import Swal from 'sweetalert2';
+import  Swal  from 'sweetalert2';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 //ng g c login/register --flat -is --spect=false   se puede modificar animate.css
@@ -47,11 +47,11 @@ export class LoginComponent implements OnInit {
       if (correcto) {
         this.router.navigate(['/dashboard'])
       } else {
-        Swal('Atención', 'Vuelva a ingresar las credenciales', 'error');
+        Swal.fire('Atención', 'Vuelva a ingresar las credenciales', 'error');
 
       }
     }, error => {
-      Swal('Atención', 'Ocurrio un problema inesperado codigo: ' + error, 'error')
+      Swal.fire('Atención', 'Ocurrio un problema inesperado codigo: ' + error, 'error')
 
     });    //cierro promesa de proveedor
 

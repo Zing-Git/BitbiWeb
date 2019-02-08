@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment as ENV } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { retry } from 'rxjs/operators';
+import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 import { ProductoModel } from './../../modelos/productoModel';
 
 const cudOptions = {
@@ -30,7 +30,8 @@ export class ProductoService {
   postProducto(producto: ProductoModel): Observable<any> {
     const newSession = Object.assign({}, producto);
     return this.http.post<any>(this.urlPostNuevoProducto, newSession, cudOptions)
-      .map(result => {
+      .pipe(
+        map(result => {
         console.log(result);
         if (result['ok']) {
           return true;
@@ -38,14 +39,15 @@ export class ProductoService {
         else {
           return false;
         }
-      });
+      }));
   }
 
   postGetProductos(): Observable<any> {
     localStorage.removeItem('listadoProductos');
     const url = this.urlPostGetProductos + '?idProveedor=' + this.idProveedor;
     return this.http.get<any>(url, cudOptions)
-      .map(result => {
+      .pipe(
+        map(result => {
 
         if (result['ok']) {
           localStorage.setItem('listadoProductos', JSON.stringify(result['productos']));
@@ -55,7 +57,7 @@ export class ProductoService {
           
           return false;
         }
-      });
+      }));
   }
 
   postActualizarProductos(productos: any): Observable<any> {
@@ -64,13 +66,14 @@ export class ProductoService {
     };
 
     return this.http.post<any[]>(this.urlPostActualizarProductos, parametros, cudOptions)
-      .map(result => {
+      .pipe(
+        map(result => {
         if (result['ok']) {
           return true;
         } else {
           return false;
         }
-      });
+      }));
   }
 
 }

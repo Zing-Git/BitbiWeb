@@ -7,15 +7,17 @@ export class SidebarService {
 
   menu: any = [
     {
-      titulo: 'Principal',
+      titulo: 'Home',
       icono: 'mdi mdi-gauge',
+      url: '/dashboard',
       submenu: [
-        { titulo: 'Principal', url: '/dashboard' },
-        { titulo: 'Pedidos', url: '/pedidos' },
-        { titulo: 'Producto', url: '/producto' },  //listadoProducto
-        { titulo: 'Listado Productos', url: '/listadoProducto' },  //listadoProducto
-        { titulo: 'Gráficas', url: '/graficas1' },
-        { titulo: 'Progress', url: '/progress' }
+        //{ titulo: 'Principal', icono: 'fas fa-ankh',url: '/dashboard' },
+        { titulo: 'Pedidos', icono: 'fas fa-ankh',url: '/pedidos' },
+        { titulo: 'Producto', icono: 'fas fa-ankh',url: '/producto' },  //listadoProducto
+        { titulo: 'Listado Productos', icono: 'fas fa-ankh',url: '/listado-producto' },  //listadoProducto
+        { titulo: 'Gráficas', icono: 'fas fa-ankh',url: '/graficas1' },
+        { titulo: 'Progress', icono: 'fas fa-ankh',url: '/progress' },
+        { titulo: 'Carga de Productos',  icono: 'fas fa-ankh',url: '/carga-producto' }
       ]
     }
 
@@ -27,7 +29,8 @@ export class SidebarService {
         { titulo: 'Producto', icono: 'fas fa-ankh', url: '/producto' },
         { titulo: 'Listado de Productos', icono: 'fas fa-ankh', url: '/listado-producto' },
         { titulo: 'Gráficas', icono: 'fas fa-ankh', url: '/graficas1' },
-        { titulo: 'Progress', icono: 'fas fa-ankh', url: '/progress' }
+        { titulo: 'Progress', icono: 'fas fa-ankh', url: '/progress' },
+        { titulo: 'Carga de Productos', icono: 'fas fa-ankh', url: '/carga-producto' }
   ]
   constructor() { }
   

@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit {
     this.nombre = this.usuario[0].entidad.razonSocial
     this.menu = this.sidebarServices.getMenu();
 
-    this.otroMenu = this.sidebarServices.getOtroMenu();
+    this.otroMenu = this.sidebarServices.getMenu();
   }
 
 }

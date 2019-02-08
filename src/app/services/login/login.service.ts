@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment as ENV } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import { retry } from 'rxjs/operators';
+
+
+import { retry, map } from 'rxjs/operators';
 import { LoginModel } from 'src/app/modelos/loginModel';
 import { Router } from '@angular/router';
 
@@ -94,7 +94,9 @@ console.log('estoy en servico');
 
     const newSession = Object.assign({}, parametros);
 
-    return this.http.post<any[]>(this.urlPostGetProveedorLogin, newSession, cudOptions).map((resp: any) => {
+    return this.http.post<any[]>(this.urlPostGetProveedorLogin, newSession, cudOptions)
+    .pipe(
+    map((resp: any) => {
         console.log(resp);
         localStorage.setItem('idProveedor', resp.proveedorDB[0]._id);
         localStorage.setItem('token', resp.usuario.token);
@@ -104,6 +106,7 @@ console.log('estoy en servico');
         this.usuario = resp.usuario;
         this.token = resp.usuario.token;
         return true;
-      });
+      })
+    );
   }
 }

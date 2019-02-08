@@ -72,7 +72,7 @@ export class ListadoProductoComponent implements OnInit, PipeTransform {
 
     this.productoServices.postActualizarProductos(productosAModificar).subscribe(result => {
       if (result) {
-        Swal({
+        Swal.fire({
 
           text: 'Se actualizaron los productos correctamente',
           type: 'success',
@@ -92,7 +92,7 @@ export class ListadoProductoComponent implements OnInit, PipeTransform {
         //Swal('Felicidades', 'Se actualizaron los productos correctamente', 'success');
 
       } else {
-        Swal('Error', 'Ocurrio un problema, vuelva a intentar!', 'error');
+        Swal.fire('Error', 'Ocurrio un problema, vuelva a intentar!', 'error');
       }
     });
   }

@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <!-- <h4><strong>Nuevo</strong></h4> -->
+
+      <!-- FORMULARIO INICIO -->
+      <form class="">
+        <fieldset>
+          <ngb-tabset #t="ngbTabset" [justify]="currentJustify">
+
+            <!--TABSET PARA EL PASO 1 -->
+            <ngb-tab id="tab-selectbyid1" title="1.Elegir Archivos de Productos">
+              <ng-template ngbTabContent>
+                <!-- <h4>Datos del Titular</h4> -->
+
+                <br><br><br>
+                <div class="container">
+                  <div class="row">
+                    <div class="custom-file" id="customFile" lang="es">
+                      <input type="file" class="custom-file-input" id="exampleInputFile" aria-describedby="fileHelp"
+                        (change)="onFileChange($event)">
+                      <label class="custom-file-label" for="exampleInputFile">
+                        Seleccione un archivo...
+                      </label>
+                    </div>
+                    <br><br>
+                    <span> <button *ngIf="procesarData" class="btn btn-primary" (click)="procesar(data)">Pre Visualizar</button>
+                    </span>
+                  </div>
+
+                </div>
+
+
+
+
+              </ng-template>
+            </ngb-tab>
+
+
+            <!--TABSET PARA EL PASO 2 -->
+            <ngb-tab id="tab-selectbyid2" title="2. Definir Tipo de Actualizacion" >
+              <ng-template ngbTabContent>
+
+                <br><br><br>
+
+                <!-- Default unchecked -->
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                  <label class="custom-control-label" for="defaultUnchecked"> El Archivo reemplazara todos los
+                    productos actuales</label>
+                </div>
+
+                <!-- Default checked -->
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios"
+                    checked>
+                  <label class="custom-control-label" for="defaultChecked">El Archivo se agrega a los productos
+                    existentes</label>
+                </div>
+
+              </ng-template>
+            </ngb-tab>
+
+
+
+            <!--TABSET PARA EL PASO 3 -->
+            <ngb-tab id="tab-selectbyid3" title="3. Vista Preliminar">
+              <ng-template ngbTabContent>
+                <br><br><br>
+                <div class="container">
+                  <div>
+                    <ng2-smart-table [settings]="settings" class="table table-hover" [source]="productos" (custom)="onCustom($event)"></ng2-smart-table>
+                  </div>
+                </div>
+
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+        </fieldset>
+      </form>
+
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
+</div>
+<!-- <button (click)="clienteModal.close()">Close</button> -->

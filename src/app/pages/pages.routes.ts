@@ -7,6 +7,7 @@ import { LoginGuardGuard } from './../services/guards/login-guard.guard';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { AltaProductoComponent } from './producto/alta/alta-producto.component';
 import { ListadoProductoComponent } from './producto/listado/listado-producto.component';
+import { CargaProductoComponent } from './producto/carga/carga-producto.component';
 
 
 const pagesRoutes: Routes = [
@@ -21,7 +22,7 @@ const pagesRoutes: Routes = [
     { path: 'pedidos', component: PedidosComponent, data: { titulo: 'Pedidos' } },
     { path: 'producto', component: AltaProductoComponent, data: { titulo: 'Producto' } },
     { path: 'listado-producto', component: ListadoProductoComponent, data: { titulo: 'Listado de Producto' } },
-    //{ path: 'account-settings', component: AccoutSettingsComponent, data: { titulo: 'Ajustes de Tema' } },
+    { path: 'carga-producto', component: CargaProductoComponent, data: { titulo: 'Carga de Productos' } },
     //{ path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },
     //{ path: 'busqueda/:termino', component: BusquedaComponent, data: { titulo: 'Buscador' } },
     // Mantenimientos

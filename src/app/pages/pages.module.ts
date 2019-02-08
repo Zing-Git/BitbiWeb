@@ -29,8 +29,14 @@ import { ModalListadoProductoComponent } from './producto/modal/modal-listado-pr
 
 //spinner
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-
+import { CargaProductoComponent } from './producto/carga/carga-producto.component';
 //cada carpeta tiene un modulo para trabajr ordenadamente
+// ngbmodule con bootstrap para tabset del formulario
+
+//para tabset
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
 @NgModule({
     declarations: [
         DashboardComponent,
@@ -43,7 +49,8 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
         PedidosComponent,
         AltaProductoComponent,
         ListadoProductoComponent,
-        ModalListadoProductoComponent
+        ModalListadoProductoComponent,
+        CargaProductoComponent
     ],
     exports: [
         DashboardComponent,
@@ -52,10 +59,11 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
         // MaterialModule
     ],
     imports: [
+        Ng2SmartTableModule,
         DataTablesModule,
         Ng2SearchPipeModule,
-        
-        ReactiveFormsModule,        
+        NgbModule,
+        ReactiveFormsModule,
         CommonModule,
         SharedModule,
         PAGES_ROUTES,

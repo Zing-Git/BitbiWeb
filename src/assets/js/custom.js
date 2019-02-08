@@ -99,26 +99,26 @@ $(function() {
     // ============================================================== 
     //tooltip
     // ============================================================== 
-    //$(function() {
-    //    $('[data-toggle="tooltip"]').tooltip()
-    //})
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
     // ============================================================== 
     //Popover
     // ============================================================== 
-   // $(function() {
-    //    $('[data-toggle="popover"]').popover()
-    //})
+    $(function() {
+        $('[data-toggle="popover"]').popover()
+    })
     // ============================================================== 
     // Sidebarmenu
     // ============================================================== 
-   // $(function() {
-     //   $('#sidebarnav').AdminMenu();
-   // });
+    $(function() {
+        $('#sidebarnav').AdminMenu();
+    });
 
     // ============================================================== 
     // Perfact scrollbar
     // ============================================================== 
-    //$('.scroll-sidebar, .right-side-panel, .message-center, .right-sidebar').perfectScrollbar();
+    $('.scroll-sidebar, .right-side-panel, .message-center, .right-sidebar').perfectScrollbar();
     
     // ============================================================== 
     // Resize all elements

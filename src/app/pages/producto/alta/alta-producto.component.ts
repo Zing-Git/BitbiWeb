@@ -71,10 +71,10 @@ export class AltaProductoComponent implements OnInit {
     this.productoServices.postProducto(this.productoModel).subscribe(result => {
       console.log(result);
       if (result) {
-        Swal('Felicidades', 'Acaba de Cargar un Producto', 'success');
+        Swal.fire('Felicidades', 'Acaba de Cargar un Producto', 'success');
         this.productoForm.reset();
       } else {
-        Swal('Ocurrio un problema', 'Vuelva a intentar ', 'warning');
+        Swal.fire('Ocurrio un problema', 'Vuelva a intentar ', 'warning');
       }
     });
 
@@ -95,7 +95,11 @@ export class AltaProductoComponent implements OnInit {
       const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
 
       /* grab first sheet */
-      const wsname: string = wb.SheetNames[0];
+      const wsname: string = wb.SheetNames[1]; //nombre de las hojasdel excel, se lo podria mostrar en un listbox
+      wb.SheetNames.forEach(x=>{
+        console.log(x);
+      })
+      console.log(wsname);
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
       /* save data */

@@ -1,52 +1,75 @@
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
 <aside class="left-sidebar">
-    <!-- Sidebar scroll-->
-    <div class="scroll-sidebar">
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav">
-            <ul id="sidebarnav">
-                <li class="user-profile">
-                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                        <!--<img [src]="usuario.img | imagen" alt="user" />-->
-                        <span class="hide-menu"> {{ nombre }} </span>
-                    </a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a routerLinkActive="active" routerLink="/perfil">Perfil </a></li>
-                        <li><a href="javascript:void()">My Balance</a></li>
-                        <li><a href="javascript:void()">Inbox</a></li>
-                        <li><a routerLinkActive="active" routerLink="/account-settings">Account Setting</a></li>
-                        <li><a (click)="loginServices.logout()" class="pointer">Salir </a></li>
-                    </ul>
-                </li>
-                <li class="nav-devider"></li>
-                <li class="nav-small-cap">PERSONAL</li>
+  <!-- Sidebar scroll-->
+  <div class="scroll-sidebar">
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav">
+      <ul id="sidebarnav">
+        
+        <li *ngFor="let menu of otroMenu">
+           <a class="has-arrow waves-effect waves-dark" [routerLink]="[menu.url]"
+            aria-expanded="false">
+            <i [class]="menu.icono"></i>
+            <span class="hide-menu">{{ menu.titulo }}</span>
+          </a>
+          <ul aria-expanded="false" class="">
+            <li *ngFor="let submenu of menu.submenu">
+              <a routerLinkActive="active" [routerLink]="[submenu.url]">
+                <i [class]="menu.icono"></i> {{ submenu.titulo }}
+              </a>
+            </li>
+          </ul>
+        </li>
 
-                <li> <a aria-expanded="false"><i class="mdi mdi-gauge"><span></span></i></a>
-                    <ul>
-                       <li *ngFor="let menu of otroMenu">
-                            <a routerLinkActive="active" [routerLink]="[menu.url]"><i [class]="menu.icono"></i> {{ menu.titulo }} </a>
-                       </li>
-                    </ul>
-                </li>
-                <!-- <li *ngFor="let menu of menu">
-                    <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu"> {{ menu.titulo }} 
-                        <span class="label label-rouded label-themecolor pull-right"> {{ menu.submenu.length }} </span></span></a>
-                    <ul aria-expanded="false" class="collapse">
-
-                        <li *ngFor="let submenu of menu.submenu">
-                            <a routerLinkActive="active" [routerLink]="[submenu.url]"> {{ submenu.titulo }} </a>
-                        </li>
-
-                        <li><a href="index2.html">Analytical</a></li>
-                        <li><a href="index3.html">Demographical</a></li>
-                        <li><a href="index4.html">Modern</a></li>
-                    </ul>
-                </li> -->
-            </ul>
-        </nav>
-        <!-- End Sidebar navigation -->
-    </div>
-    <!-- End Sidebar scroll-->
+      </ul>
+    </nav>
+    <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
 </aside>
 <!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+
+
+
+
+
+
+
+
+
+<!-- 
+<aside class="left-sidebar">
+     Sidebar scroll
+    <div class="scroll-sidebar">
+        
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+               
+               
+                <li>  <span class="hide-menu"> {{ nombre }} </span></li>
+
+               
+                 <li *ngFor="let menu of otroMenu">
+                    <a class="has-arrow waves-effect" [routerLink]="[menu.url]" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu"> {{ menu.titulo }} 
+                        <span class="label label-rouded label-themecolor pull-right">  </span></span></a>
+                    <ul aria-expanded="false" >
+
+                         <li *ngFor="let submenu of menu.submenu">
+                            <a routerLinkActive="active" [routerLink]="[submenu.url]"><i [class]="menu.icono"></i> {{ submenu.titulo }} </a>
+                        </li> 
+
+                    </ul>
+                </li> 
+            </ul>
+        </nav>
+        
+    </div>
+  
+</aside>
+============================================================== -->
 <!-- End Left Sidebar - style you can find in sidebar.scss  -->
 <!-- ============================================================== -->

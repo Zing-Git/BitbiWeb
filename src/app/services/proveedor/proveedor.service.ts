@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment as ENV } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { retry } from 'rxjs/operators';
+import { retry, map } from 'rxjs/operators';
 
 const cudOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -31,8 +31,8 @@ export class ProveedorService {
     let url = this.urlGetPedidos + '?idProveedor=' + this.idProveedor;
 
     return this.http.get<any[]>(url, cudOptions).pipe(
-      retry(2)
-    ).map(result => {
+      retry(2),
+    map((result : any) => {
       if (result['ok']) {
         if (result['pedidos_array']) {
 
@@ -44,6 +44,6 @@ export class ProveedorService {
       } else {
         return false;
       }
-    });
+    }));
   }
 }

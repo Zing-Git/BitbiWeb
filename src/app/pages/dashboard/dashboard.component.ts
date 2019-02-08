@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProveedorService } from 'src/app/services/service.index';
+import { ReportesService } from 'src/app/services/reportes/reportes.service';
+import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,14 +9,27 @@ import { ProveedorService } from 'src/app/services/service.index';
 })
 export class DashboardComponent implements OnInit {
 
+  fechaInicio: NgbDateStruct;
+  fechaFin: NgbDateStruct;
+
+  date: {year: number, month: number};
   idProveedor: string;
   pedidos: any;
+  today: any;
 
-  constructor(public proveedorServices: ProveedorService) { }
+  constructor(public reporteServices: ReportesService,
+    private calendar: NgbCalendar) { }
 
   ngOnInit() {
   }
 
-  
+  getReporte(){
+
+  }
+
+  selectToday() {
+    console.log(this.fechaInicio);
+    console.log(this.fechaFin);
+  }
 
 }
