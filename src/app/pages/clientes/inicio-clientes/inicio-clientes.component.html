@@ -1,0 +1,84 @@
+<ng4-loading-spinner [timeout]="3000"  [loadingText]="'Aguarde unos segundos'" [zIndex]="9999"></ng4-loading-spinner>
+<div class="container">
+  <nav class="navbar">
+    <input class="form-control" type="text" name="search" [(ngModel)]="serachText" placeholder="Buscar palabra...">
+  </nav>
+  <div class="container">
+  <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+    
+    <div class="btn-group" role="group" aria-label="First group">
+      <button type="button" class="btn btn-primary btn-block">Exportar Excel</button>
+     
+    </div>
+    <div class="btn-group" role="group" aria-label="First group">
+      <button type="button" class="btn btn-primary btn-block">Mapa de mi Red</button>
+     
+    </div>
+  </div>
+</div>
+<br>
+<div class="container">
+   <div class="table-responsive">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+            <!-- <th scope="col">Editar</th> 
+            <th scope="col">Detalle</th>-->
+          <th scope="col" >  #  </th>
+          <th scope="col">Cuit</th>
+          <th scope="col">Comercio</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Calle</th>
+          <th scope="col">Numero</th>
+          <th scope="col">Barrio</th>
+          <th scope="col">Localidad</th>
+          <th scope="col">Provincia</th>
+          <th scope="col">Imagen</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Celular</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let comercio of comercios | filter: serachText; let i = index ">
+        <tr>
+           
+          <td>{{ i }}</td>
+          <td>  {{comercio.comercio.entidad.cuit}}</td>
+          <td>  {{comercio.comercio.entidad.razonSocial}}</td>
+          <td></td>
+          <td></td>
+          <td>  {{comercio.comercio.entidad.domicilio.calle}}</td>
+          <td> {{comercio.comercio.entidad.domicilio.numeroCasa}}</td>
+          <td> {{comercio.comercio.entidad.domicilio.barrio}}</td>
+          <td> {{comercio.comercio.entidad.domicilio.localidad}}</td>
+          <td> {{comercio.comercio.entidad.domicilio.provincia}}</td>
+          <td> <i class="fa fa-user" aria-hidden="true"></i>
+          </td>
+          <td> </td>
+          <td> {{comercio.comercio.contactos[0].codigoArea + - + comercio.comercio.contactos[0].numeroCelular}}</td>
+
+          <td>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <div class="btn-group mr-2" role="group" aria-label="First group">
+                
+                <button type="button" class="btn-sm btn btn-success" (click)="visualizarComercio(comercio)">Detalle</button>
+                
+              </div>
+              </div>
+
+          </td>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="container">
+    <button class="btn btn-primary" (click)="modificar()">Modificar</button>
+  </div>
+</div>
+ 
+  
+</div>
+
+
+<!---->

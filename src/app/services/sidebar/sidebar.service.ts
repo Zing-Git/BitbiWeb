@@ -11,7 +11,7 @@ export class SidebarService {
       icono: 'mdi mdi-gauge',
       url: '/dashboard',
       submenu: [
-        //{ titulo: 'Principal', icono: 'fas fa-ankh',url: '/dashboard' },
+        { titulo: 'Clientes', icono: 'fas fa-ankh',url: '/inicio-clientes' },
         { titulo: 'Pedidos', icono: 'fas fa-ankh',url: '/pedidos' },
         { titulo: 'Producto', icono: 'fas fa-ankh',url: '/producto' },  //listadoProducto
         { titulo: 'Listado Productos', icono: 'fas fa-ankh',url: '/listado-producto' },  //listadoProducto

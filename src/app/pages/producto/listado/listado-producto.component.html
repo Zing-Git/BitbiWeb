@@ -52,7 +52,7 @@
             </td>
             <td ><i class="far fa-eye" (click)="visualizarProducto(producto)"></i></td>-->
           <td>{{ i }}</td>
-          <td>  <input  [(ngModel)]="producto.codigoProveedor" type="text" [disabled]="!producto.isEditable"></td>
+          <td>  <input [(ngModel)]="producto.codigoProveedor"  type="text"[disabled]="!producto.isEditable" > </td>
           <td>  <input  [(ngModel)]="producto.categoria" type="text" [disabled]="!producto.isEditable"></td>
           <td>  <input  [(ngModel)]="producto.subcategoria"  type="text" [disabled]="!producto.isEditable"></td>
           <td>  <input [(ngModel)]="producto.nombreProducto"  type="text" [disabled]="!producto.isEditable"></td>

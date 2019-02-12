@@ -36,6 +36,7 @@ import { CargaProductoComponent } from './producto/carga/carga-producto.componen
 //para tabset
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { InicioClientesComponent } from './clientes/inicio-clientes/inicio-clientes.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
         AltaProductoComponent,
         ListadoProductoComponent,
         ModalListadoProductoComponent,
-        CargaProductoComponent
+        CargaProductoComponent,
+        InicioClientesComponent
     ],
     exports: [
         DashboardComponent,
