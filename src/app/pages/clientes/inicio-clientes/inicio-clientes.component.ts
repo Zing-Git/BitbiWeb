@@ -52,7 +52,7 @@ export class InicioClientesComponent implements OnInit {
     //this.pedidos = JSON.parse(localStorage.getItem('pedidosProveedor'));
     this.proveedorServices.getComerciosProveedor().subscribe(result =>{
       if(result){
-        this.comercios = JSON.parse(localStorage.getItem('ccomerciosProveedor'));
+        this.comercios = JSON.parse(localStorage.getItem('comerciosProveedor'));
         console.log(this.comercios);
       }
     })   

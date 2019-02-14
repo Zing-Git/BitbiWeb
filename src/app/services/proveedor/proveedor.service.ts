@@ -57,7 +57,7 @@ console.log(url);
       map(result => {
         
         if(result['ok']){
-          localStorage.setItem('ccomerciosProveedor', JSON.stringify(result['comercios']));
+          localStorage.setItem('comerciosProveedor', JSON.stringify(result['comercios']));
           console.log(result);
           return true;
         }else{

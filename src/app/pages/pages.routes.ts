@@ -16,7 +16,7 @@ const pagesRoutes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [ LoginGuardGuard ],
-        data: { titulo: 'Principal' }
+        data: { titulo: 'Estadísticas Bitbi' }
     },
     { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress' } },
     { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Gráficas' } },

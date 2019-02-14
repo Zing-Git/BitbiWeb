@@ -1,48 +1,66 @@
 <div class="row">
+  <div class="col-12">
+    <div>
+      <form class="form-inline">
+        <div class="form-group  mb-2 mr-sm-2">
+          <div class="input-group mb-2 mr-sm-2">
+            <input lang="es-ES" class="form-control" placeholder="Desde" name="dp" [(ngModel)]="fechaInicio" (ngModelChange)="selectFrom(); fechaInicio = $event" 
+              ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+
+              <button class="btn btn-outline-secondary" (click)="d.toggle();" type="button"><i class="fa fa-calendar"
+                  aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="input-group mb-2 mr-sm-2">
+            <input class="form-control" placeholder="Hasta" name="dp1" [(ngModel)]="fechaFin"  (ngModelChange)="selectTo(); fechaFin = $event" ngbDatepicker #e="ngbDatepicker">
+            <div class="input-group-append">
+
+              <button class="btn btn-outline-secondary" (click)="e.toggle(); " type="button"><i class="fa fa-calendar"
+                  aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div class="input-group mb-2 mr-sm-2" style="float: right;">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-secondary">Hoy</button>
+              <button type="button" class="btn btn-secondary">Ayer</button>
+              <button type="button" class="btn btn-secondary">Ultimos 7 dias</button>
+              <button type="button" class="btn btn-secondary">Ultimos 30 dias</button>
+              <button type="button" class="btn btn-secondary">Ultimos 90 dias</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+
   <div class="col-6">
     <div class="card">
       <div class="card-body">
-        <h3>Desde </h3>
-        <div >
-          <form class="form-inline">
-            <div class="form-group">
-              <div class="input-group">
-                <input lang="es-ES" class="form-control" placeholder="aaaa/mm/dd" name="dp" [(ngModel)]="fechaInicio" ngbDatepicker #d="ngbDatepicker">
-                <div class="input-group-append">
-
-                  <button class="btn btn-outline-secondary" (click)="d.toggle(); selectToday();" type="button"><i class="fa fa-calendar"
-                      aria-hidden="true"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
+        <div style="display: block">
+          <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas>
         </div>
-
-
-
-        <h3>Hasta </h3>
-        <div >
-          <form class="form-inline">
-            <div class="form-group">
-              <div class="input-group">
-                <input class="form-control"  placeholder="aaaa/mm/dd" name="dp1" [(ngModel)]="fechaFin" ngbDatepicker #e="ngbDatepicker">
-                <div class="input-group-append">
-
-                  <button class="btn btn-outline-secondary" (click)="e.toggle(); selectToday();" type="button"><i class="fa fa-calendar"
-                      aria-hidden="true"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-
       </div>
     </div>
+  </div>
 
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <div style="display: block">
+          <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
 
 
 <div class="row">
