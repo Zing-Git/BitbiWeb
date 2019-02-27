@@ -16,7 +16,7 @@ export class ProveedorService {
 
   private urlBase = ENV.BASE_URL;
   private urlGetPedidos = this.urlBase + '/pedido/listar_pedidos_proveedor/?idProveedor=';
-  private urlGetPedidosProveedor = this.urlBase + '(/pedido/listar_pedidos_proveedor_v2_stock/';  //'/pedido/listar_pedidos_proveedor/';
+  private urlGetPedidosProveedor = this.urlBase + '/pedido/listar_pedidos_proveedor_v2_stock/?idProveedor=';  //'/pedido/listar_pedidos_proveedor/';
   ///pedido/listar_pedidos_pendientes/?idProveedor=5bbdf4bd39f9bf12605c6bb2
   private urlGetComercios = this.urlBase + '/proveedor/consultar_comercios_de_proveedor/?idProveedor='
 
@@ -29,11 +29,12 @@ export class ProveedorService {
 
   getPedidosProveedor(): Observable<any> {
 
-    let url = this.urlGetPedidos + this.idProveedor;
+    let url = this.urlGetPedidosProveedor + this.idProveedor;
 
     return this.http.get<any[]>(url, cudOptions).pipe(
       retry(2),
-    map((result : any) => {
+      map((result : any) => {
+        console.log(result);
       if (result['ok']) {
         if (result['pedidos_array']) {
 

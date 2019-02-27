@@ -10,7 +10,7 @@
           <ngb-tabset #t="ngbTabset" [justify]="currentJustify">
 
             <!--TABSET PARA EL PASO 1 -->
-            <ngb-tab id="tab-selectbyid1" title="1.Elegir Archivos de Productos">
+            <ngb-tab id="tab-selectbyid1" title="1. Elegir Archivos de Productos">
               <ng-template ngbTabContent>
                 <!-- <h4>Datos del Titular</h4> -->
 
@@ -24,41 +24,59 @@
                         Seleccione un archivo...
                       </label>
                     </div>
-                    <br><br>
-                    <span> <button *ngIf="procesarData" class="btn btn-primary" (click)="procesar(data)">Pre Visualizar</button>
-                    </span>
+
                   </div>
 
                 </div>
+                <br><br><br>
+                <div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+                      checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      El archivo reemplazará todos los productos actuales
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
+                      disabled>
+                    <label class="form-check-label" for="exampleRadios2">
+                      El archivo se agrega a los productos existentes
+                    </label>
+                  </div>
+                  <div class="form-check disabled">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3"
+                      disabled>
+                    <label class="form-check-label" for="exampleRadios3">
+                      El archivo solo actualiza precios de productos con el mismo codigo de producto
+                    </label>
+                  </div>
+                </div>
 
-
-
+                <br><br>
+                <span> <button *ngIf="procesarData" class="btn btn-primary" (click)="procesar(data); t.select('tab-selectbyid2')" float-right>Pre Visualizar</button>
+                </span>
 
               </ng-template>
             </ngb-tab>
 
 
             <!--TABSET PARA EL PASO 2 -->
-            <ngb-tab id="tab-selectbyid2" title="2. Definir Tipo de Actualizacion" >
+            <ngb-tab id="tab-selectbyid2" title="2. Vista Preliminar">
               <ng-template ngbTabContent>
-
                 <br><br><br>
+                <div class="container">
+                  <div class="miscroll">
+                    <ng2-smart-table [settings]="settings" class="table table-hover" [source]="productos" (custom)="onCustom($event)"></ng2-smart-table>
+                  </div>
+                  <br><br>
+                  <button type="button" (click)="getDataFromTable()" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+                    Guardar
+                  </button>
+                  
 
-                <!-- Default unchecked -->
-                <div class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
-                  <label class="custom-control-label" for="defaultUnchecked"> El Archivo reemplazara todos los
-                    productos actuales</label>
+
                 </div>
-
-                <!-- Default checked -->
-                <div class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios"
-                    checked>
-                  <label class="custom-control-label" for="defaultChecked">El Archivo se agrega a los productos
-                    existentes</label>
-                </div>
-
               </ng-template>
             </ngb-tab>
 
@@ -68,11 +86,7 @@
             <ngb-tab id="tab-selectbyid3" title="3. Vista Preliminar">
               <ng-template ngbTabContent>
                 <br><br><br>
-                <div class="container">
-                  <div>
-                    <ng2-smart-table [settings]="settings" class="table table-hover" [source]="productos" (custom)="onCustom($event)"></ng2-smart-table>
-                  </div>
-                </div>
+                
 
               </ng-template>
             </ngb-tab>

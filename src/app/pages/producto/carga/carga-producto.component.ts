@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalXlsxProductoComponent } from '../modal/modal-xlsx/modal-xlsx-producto.component';
 import { ProductoModel } from 'src/app/modelos/productoModel';
 import { ProductoService } from 'src/app/services/producto/producto.service';
-import { FormBuilder } from '@angular/forms';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import 'hammerjs';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import { Producto } from './../model/producto';
+import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
   selector: 'app-carga-producto',
@@ -18,60 +18,145 @@ export class CargaProductoComponent implements OnInit {
 
   @ViewChild(ModalXlsxProductoComponent) hijo: ModalXlsxProductoComponent;
   productoModel: any = new ProductoModel();
+
   currentJustify = 'justified';
   procesarData: boolean = false;
   data: any[];
-  productos : Producto[];
-  tabs1 : boolean = false;
-  tbas2 : boolean = false;
+  productos: Producto[];
+  productoIndividual: Producto;
+  tabs1: boolean = false;
+  tbas2: boolean = false;
+
+  empaques: any[] = new Array();
+
+  source: LocalDataSource = new LocalDataSource();
 
   settings = {
     actions: {
       columnTitle: 'Accion',
-      add: false,
-      delete: { deleteButtonContent : 'Borrar', confirmDelete : true },
-      edit: false,
+      add: true,
+      delete: { confirmDelete: true },
+      edit: true,
       imprimirPDF: false,
       position: 'right',
-      // custom: [
-      //   {
-      //     name: 'eliminarRegistro',
-      //     title: 'Eliminar'
-      //   }
-      // ],
     },
     columns: {
       0: {
-        title: 'Nombre'
+        title: 'Codigo de Proveedor'
       },
-      1: {
-        title: 'Precio'
+      7: {
+        title: 'Producto'
       },
-      2: {
+      9: {
+        title: 'Empaque',
+        type: 'html',
+        editor: {
+          type: 'list',
+          config: {
+            list: this.empaques
+                 
+          
+          }
+        },
+        valuePrepareFunction: (cell) => {
+          console.log(cell);
+          return cell;
+          //return this.findDayNameById(cell);
+        }
+      },
+      5: {
+        title: 'Unidades'
+      },
+      8: {
         title: 'Unidad Medida'
       },
-      3: {
+      10: {
         title: 'Stock'
+      },
+      1: {
+        title: 'Precio',
+        valuePrepareFunction: (value) => {
+          return value === 'precioProveedor' ? value : Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(value);
+        }
+      },
+      3: {
+        title: 'Categoria'
+      },
+      4: {
+        title: 'Sub categoria'
+      },
+      11: {
+        title: 'Detalle',
+        width: '15%',
+        filter: false,
+        editor: {
+          type: 'textarea',
+        }
+      },
+      12: {
+        title: 'Nota Interna',
+        width: '15%',
+        filter: false,
+        editor: {
+          type: 'textarea'
+        }
       }
-    }
+    },
+    pager: {
+      perPage: 5
+    },
   };
-  
-  constructor(private productoServices: ProductoService, 
-    private formBuilder: FormBuilder, public ngxSmartModalService: NgxSmartModalService) { }
+
+  constructor(private productoServices: ProductoService,
+    public ngxSmartModalService: NgxSmartModalService
+  ) {
+    console.log("estoy en carga");
+
+  }
 
   ngOnInit() {
+    this.source = new LocalDataSource([]); 
   }
 
-  procesar(){
+  procesar() {
+
     this.productos = this.data;
-   console.log(this.productos);
-   this.productos.forEach(x => {
-     console.log(x);
-   })
-    // this.hijo.generarTabla(row);
-    // this.ngxSmartModalService.getModal('productoModal').open();
-   this.tabs1 = true;
+    this.productoModel.Producto = this.productos;
+    this.obtenerEmpaques();
+    console.log(this.productoModel);
+    this.tabs1 = true;
+
+    this.source = new LocalDataSource([]); 
+    this.source.load(this.productos);
+    this.source.load(this.productos.slice(0));
   }
+
+  obtenerEmpaques() {
+    let arreglo = new Array();
+    let filtroArreglo = new Array();
+    //this.empaques = new Array();
+    this.productos.forEach(x => {
+      console.log('EN EMPAQUE');
+      
+      arreglo.push(x[9]);
+    })
+
+    filtroArreglo = arreglo.filter(function (elem, index, self) {
+      return index === self.indexOf(elem);
+    })
+
+    console.log(filtroArreglo);
+    //crear una lista con value title
+    filtroArreglo.forEach(x =>{
+      this.empaques.push({
+      value: x,
+      title: x
+    });
+    })
+    console.log(this.empaques);
+  }
+
+
 
   onFileChange(evt: any) {
     /* wire up file reader */
@@ -97,7 +182,7 @@ export class CargaProductoComponent implements OnInit {
     };
     reader.readAsBinaryString(target.files[0]);
 
-  
+
     this.procesar();
   }
 
@@ -123,6 +208,16 @@ export class CargaProductoComponent implements OnInit {
         break;
       }
     }
-    
+
+  }
+
+  getDataFromTable(){
+    let data = [];
+    this.source.getAll().then(value => { 
+        value.forEach(element => {
+            data.push(element); 
+        });;
+    });
+    console.log(data);
   }
 }

@@ -1,118 +1,78 @@
 <app-modal-listado-producto></app-modal-listado-producto>
-<ng4-loading-spinner [timeout]="3000"  [loadingText]="'Aguarde unos segundos'" [zIndex]="9999"></ng4-loading-spinner>
+<ng4-loading-spinner [timeout]="4000" [loadingText]="'Aguarde unos segundos'" [zIndex]="9999"></ng4-loading-spinner>
 <div class="container">
-  <nav class="navbar">
-    <input class="form-control" type="text" name="search" [(ngModel)]="serachText" placeholder="Buscar palabra...">
-  </nav>
+
+  <!-- BUSCADOR   -->
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <input type="text" class="form-control" [(ngModel)]="serachText" placeholder="Buscar palabra...">
+    </div>
+  </div>
+
+  <!-- BOTONES -->
+  <div class="row text-center mt-2">
+    <div class="col-md-12 d-flex justify-content-between">
+      <button type="button" class="btn btn-primary" (click)="goToCarga()">Importar Excel</button>
+      <button type="button" class="btn btn-primary">Exportar Excel</button>
+      <button type="button" class="btn btn-primary">+ Nuevo</button>
+    </div>
+  </div>
   <div class="container">
-  <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-    
-     
-    <div class="btn-group" role="group" aria-label="First group">
-      <button type="button" class="btn btn-primary btn-block">Importar Excel</button>
-     
+    <!-- ENCABEZADO -->
+    <div class="row bg-info text-white text-center">
+      
+      <div class="col-md-1">Codigo</div>
+      <div class="col-md-1">Producto</div>
+      <div class="col-md-1">Empaque</div>
+      <div class="col-md-1">Unidad</div>
+      <div class="col-md-1">U. Medida</div>
+      <div class="col-md-1">Stock</div>
+      <div class="col-md-1">Precio Proveedor</div>
+      <div class="col-md-1">Precio Sugerido</div>
+      <div class="col-md-1">Categoria</div>
+      <div class="col-md-1">Sub categoria</div>
+      <div class="col-md-2"></div>
+
     </div>
-    <div class="btn-group" role="group" aria-label="First group">
-      <button type="button" class="btn btn-primary btn-block">Exportar Excel</button>
-     
+
+    <!-- CONTENIDO -->
+    <div class="row  text-center" *ngFor="let producto of productos |  paginate: { itemsPerPage: 5, currentPage: p }">
+      
+      <div class="col-md-1"><input [(ngModel)]="producto.codigoProveedor" type="text" [disabled]="!producto.isEditable"></div>
+      <div class="col-md-1"><input [(ngModel)]="producto.nombreProducto" type="text" [disabled]="!producto.isEditable"></div>
+      <div class="col-md-1">
+        <select [(ngModel)]="producto.empaque" [disabled]="!producto.isEditable">
+          <option *ngFor="let c of empaques" [ngValue]="c">{{c}}</option>
+        </select>
+
+      </div>
+      <div class="col-md-1"><input [(ngModel)]="producto.unidadesPorEmpaque" type="number" [disabled]="!producto.isEditable"></div>
+      <div class="col-md-1"><input [(ngModel)]="producto.unidadMedida" type="number" [disabled]="!producto.isEditable"></div>
+      <div class="col-md-1"><input [(ngModel)]="producto.stock" type="number" [disabled]="!producto.isEditable"></div>
+      <!--empaque-->
+      <div class="col-md-1"><input [(ngModel)]="producto.precioProveedor" type="number" [disabled]="!producto.isEditable"></div>
+      <div class="col-md-1"> <input [(ngModel)]="producto.precioSugerido" type=" number" [disabled]="!producto.isEditable"></div>
+      <div class="col-md-1"><input [(ngModel)]="producto.categoria" type="text" [disabled]="!producto.isEditable"></div>
+      <div class="col-md-1"> <input [(ngModel)]="producto.subcategoria" type="text" [disabled]="!producto.isEditable"></div>
+
+      <div class="col-md-2">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+
+          <button type="button" class="btn-sm btn btn-primary" (click)="producto.isEditable=!producto.isEditable" *ngIf="!producto.isEditable">Modificar</button>
+          <button type="button" class="btn-sm btn btn-secondary" *ngIf="producto.isEditable" (click)="producto.isEditable=!producto.isEditable">Guardar</button>
+          <button type="button" class="btn-sm btn btn-danger">Eliminar</button>
+          <button type="button" class="btn-sm btn btn-success" (click)="visualizarProducto(producto)">Detalle</button>
+          <button type="button" class="btn-sm btn btn-info">Ocultar</button>
+
+        </div>
+      </div>
+
     </div>
-    <div class="btn-group" role="group" aria-label="First group">
-      <button type="button" class="btn btn-primary btn-block"> + Nuevo</button>
-     
-    </div>
+    <pagination-controls (pageChange)="p = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
   </div>
-</div>
-<div class="container">
-   <div class="table-responsive">
-    <table id="mytable" class="table-striped table-condensed">
-      <thead>
-        <tr>
-            <!-- <th scope="col">Editar</th> 
-            <th scope="col">Detalle</th>-->
-          <th scope="col" >  #  </th>
-          <th scope="col">Codigo</th>
-          <th scope="col">Categoria</th>
-          <th scope="col">Sub categoria</th>
-          <th scope="col"> Producto</th>
-          <th scope="col">Precio Proveedor</th>
-          <th scope="col">Precio Sugerido</th>
-          <th scope="col"> Stock</th>
-          <th scope="col">Unidad de Medida</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let producto of productos | filter: serachText; let i = index ">
-        <tr>
-            <!-- <td>
-                <i (click)="producto.isEditable=!producto.isEditable" *ngIf="!producto.isEditable" class="fas fa-edit"></i>
-                <i  *ngIf="producto.isEditable" (click)="producto.isEditable=!producto.isEditable" class="far fa-save"></i>
-              <button (click)="producto.isEditable=!producto.isEditable" *ngIf="!producto.isEditable">Editar</button> 
-              <button *ngIf="producto.isEditable" (click)="producto.isEditable=!producto.isEditable">Guardar</button>
-  
-            </td>
-            <td ><i class="far fa-eye" (click)="visualizarProducto(producto)"></i></td>-->
-          <td>{{ i }}</td>
-          <td>  <input [(ngModel)]="producto.codigoProveedor"  type="text"[disabled]="!producto.isEditable" > </td>
-          <td>  <input  [(ngModel)]="producto.categoria" type="text" [disabled]="!producto.isEditable"></td>
-          <td>  <input  [(ngModel)]="producto.subcategoria"  type="text" [disabled]="!producto.isEditable"></td>
-          <td>  <input [(ngModel)]="producto.nombreProducto"  type="text" [disabled]="!producto.isEditable"></td>
-          <td>  <input  [(ngModel)]="producto.precioProveedor" type="number" [disabled]="!producto.isEditable"></td>
-          <td>  <input  [(ngModel)]="producto.precioSugerido" type=" number" [disabled]="!producto.isEditable"></td>
-          <td>  <input  [(ngModel)]="producto.stock" type="number" [disabled]="!producto.isEditable"></td>
-          <td>  <input  [(ngModel)]="producto.unidadMedida" type="text" [disabled]="!producto.isEditable" ></td>
-          <td>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-              <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn-sm btn btn-primary" (click)="producto.isEditable=!producto.isEditable" *ngIf="!producto.isEditable">Modificar</button>
-                <button type="button" class="btn-sm btn btn-secondary" *ngIf="producto.isEditable" (click)="producto.isEditable=!producto.isEditable">Guardar</button>
-                <button type="button" class="btn-sm btn btn-danger">Eliminar</button>
-                <button type="button" class="btn-sm btn btn-success" (click)="visualizarProducto(producto)">Detalle</button>
-                <button type="button" class="btn-sm btn btn-info">Ocultar</button>
-              </div>
-              </div>
 
-          </td>
-          
-
-
-          <!--<th scope="row">{{ i }}</th>
-          <td>{{producto.codigoProveedor}} </td>
-          | date: 'dd/MM/yyyy'}}
-          <td>{{ producto.categoria}}</td>
-          <td>{{producto.subcategoria}}</td>
-          <td>{{ producto.nombreProducto}}</td>
-          <td>{{ producto.unidadMedida }} </td>
-          <td>{{ producto.precioProveedor}}</td>
-          <td>{{ producto.stock}}</td>
-           <input formControlName="codigoProveedor" class="form-control" type="text" required="" placeholder="codigo de Proveedor">
-<input formControlName="categoria" class="form-control" type="text" required="" placeholder="categoria">
- <input formControlName="subcategoria" class="form-control" type="text" required="" placeholder="subcategoria">
-<input formControlName="nombreProducto" class="form-control" type="text" required="" placeholder="Nombre de Producto">
-  <input formControlName="precioProveedor" class="form-control" type="number" required="" placeholder="Precio de Proveedor">
-  <input formControlName="precioSugerido" class="form-control" type="number" required="" placeholder="Precio Sugerido">
- <input formControlName="stock" class="form-control" type="number" required="" placeholder="stock">
-   <input formControlName="​​​unidadMedida" class="form-control" type="text" required="" placeholder="​​​Unidad de Medida">
-          <td (click)="procesar(producto)"><i class="far fa-edit"></i></td>
-
-        </tr>-->
-          <!--_id: "5c36ceda7ab87e001589e87c"​​​
-categoria: "VERDURAS"​​​
-codigoProveedor: "A-1"​​​
-imagenes: Array []​​​
-nombreProducto: "PAPA ANDINA"​​​
-precioProveedor: 12​​​
-precioSugerido: 15​​​
-stock: -63
-​​​subcategoria: "VERDURAS"
-​​​unidadMedida: "BOLSA"-->
-
-      </tbody>
-    </table>
-  </div>
   <div class="container">
     <button class="btn btn-primary" (click)="modificar()">Modificar</button>
   </div>
-</div>
- 
-  
+
 </div>

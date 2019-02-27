@@ -4,7 +4,6 @@ import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import 'hammerjs';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
-import { getLocaleDateTimeFormat } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,17 +28,18 @@ export class DashboardComponent implements OnInit {
 
   constructor(public reporteServices: ReportesService,
     private calendar: NgbCalendar) {
-    this.fechaFin = {
+    /*this.fechaFin = {
       day: (this.today.getDate() < 10 ? +('0' + this.today.getDate()) : this.today.getDate()) , 
       month: this.today.getMonth() + 1, 
       year: this.today.getFullYear()
-    }
+    }*/
   }
 
   ngOnInit() {
   }
 
   getReporte() {
+    console.log("en reporte");
     let fechas = {
       anioInicio: this.fechaInicio.year,
       mesInicio: this.fechaInicio.month,
@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
   }
 
   selectFrom() {
-
+console.log(this.fechaInicio);
     this.fechaInicioSelected = true;
     if (this.fechaInicioSelected && this.fechaFinSelected) {
       this.obtenerEstadisticas();
@@ -70,6 +70,7 @@ export class DashboardComponent implements OnInit {
   }
 
   selectTo() {
+    console.log(this.fechaFin);
     this.fechaFinSelected = true;
     if (this.fechaInicioSelected && this.fechaFinSelected) {
       this.obtenerEstadisticas();

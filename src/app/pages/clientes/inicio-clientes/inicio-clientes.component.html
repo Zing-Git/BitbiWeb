@@ -40,8 +40,8 @@
           <th></th>
         </tr>
       </thead>
-      <tbody *ngFor="let comercio of comercios | filter: serachText; let i = index ">
-        <tr>
+      <tbody *ngFor="let comercio of comercios | filter: serachText; let i = index " >
+        <tr *ngIf="!comercio.esProveedor">
            
           <td>{{ i }}</td>
           <td>  {{comercio.comercio.entidad.cuit}}</td>

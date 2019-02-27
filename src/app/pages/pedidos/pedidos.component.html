@@ -1,30 +1,42 @@
+<ng4-loading-spinner [timeout]="3000" [loadingText]="'Aguarde unos segundos'" [zIndex]="9999"></ng4-loading-spinner>
 <div class="container">
-<table  id="mytable" class="table table-bordred table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Estado</th>
-      <th scope="col">Fecha</th>
-      <th scope="col">Total</th>
-     
-                      
-                       <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let pedido of pedidos; ">
-    <tr>
-      <th scope="row"></th>
-      <td>{{ pedido.estadoPedido}}</td>
-      <td>{{pedido.fechaEntrega   | date: 'dd/MM/yyyy'}}</td>
-      <td>{{pedido.totalPedido}}</td>
-      <td><button type="button" class="btn btn-info">Detalle</button></td>
-     
-    </tr>
 
-   
-  </tbody>
-</table>
+  <!-- BUSCADOR   -->
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <input type="text" class="form-control" [(ngModel)]="serachText" placeholder="Buscar palabra...">
+    </div>
+  </div>
+
+  <!-- BOTONES -->
+  <div class="row text-center mt-2">
+    <div class="col-md-12 d-flex justify-content-between">
+      <button type="button" class="btn btn-primary">Importar Excel</button>
+      <button type="button" class="btn btn-primary">Exportar Excel</button>
+      <button type="button" class="btn btn-primary">+ Nuevo</button>
+    </div>
+  </div>
+
+  <!-- ENCABEZADO -->
+  <div class="row mt-2 bg-info text-white text-center">
+    <div class="col-md-2">#</div>
+    <div class="col-md-2">Comercio</div>
+    <div class="col-md-2">Estado</div>
+    <div class="col-md-2">Fecha</div>
+    <div class="col-md-2">Total</div>
+    <div class="col-md-2">Acción</div>
+
+  </div>
+
+  <!-- CONTENIDO -->
+  <div class="row mt-2 text-center" *ngFor="let pedido of pedidos | filter: serachText; let i = index">
+    <div class="col-md-2">{{ i }}</div>
+    <div class="col-md-2">{{pedido.comercio.entidad.razonSocial}}</div>
+    <div class="col-md-2">{{ pedido.estadoPedido}}</div>
+    <div class="col-md-2">{{pedido.fechaEntrega | date: 'dd/MM/yyyy'}}</div>
+    <div class="col-md-2">{{pedido.totalPedido}}</div>
+    <div class="col-md-2"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+        Detalle
+      </button></div>
+  </div>
 </div>
-
-
-

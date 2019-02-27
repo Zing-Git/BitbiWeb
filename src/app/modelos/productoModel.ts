@@ -11,6 +11,9 @@ export class ProductoModel {
             subcategoria: string; //"shampoo",
             stock: number; // 10,
             unidadMedida: string;// "unidad"
+            unidadesPorEmpaque: number;
+            _id: number;
+            empaque: string;
         }
 
     ]

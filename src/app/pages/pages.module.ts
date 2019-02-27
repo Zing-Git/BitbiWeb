@@ -38,6 +38,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { InicioClientesComponent } from './clientes/inicio-clientes/inicio-clientes.component';
 
+//paginacion
+import { PaginationModule } from 'ngx-pagination-bootstrap'
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
     declarations: [
         DashboardComponent,
@@ -72,7 +76,9 @@ import { InicioClientesComponent } from './clientes/inicio-clientes/inicio-clien
         FormsModule,
         ChartsModule,
         MaterialModule,
+        PaginationModule,
         NgxSmartModalModule.forRoot(),
+        NgxPaginationModule,
         Ng4LoadingSpinnerModule.forRoot()
     ],
     providers: [

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProveedorService } from 'src/app/services/service.index';
 import { retry } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-pedidos',
@@ -32,10 +33,13 @@ export class PedidosComponent implements OnInit {
 
   //datatable
   dtOptions: DataTables.Settings = {};
+
+  serachText: string;
   
   
-  constructor(public proveedorServices: ProveedorService) {
+  constructor(public proveedorServices: ProveedorService, private spinnerService: Ng4LoadingSpinnerService) {
     this.getPedidosProveedor();
+    spinnerService.show();
   }
 
   ngOnInit() {
@@ -120,5 +124,17 @@ export class PedidosComponent implements OnInit {
     //this.obtenerCantidadPedidos()
 
   }
+
+  transform(items: any[], searchText: string): any[] {
+    if (!items) return [];
+    if (!searchText) return items;
+
+    searchText = searchText.toLowerCase();
+
+    return items.filter(it => {
+      return it.toLowerCase().includes(searchText);
+    });
+  }
+
 
 }

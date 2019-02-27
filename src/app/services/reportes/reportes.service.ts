@@ -25,12 +25,20 @@ export class ReportesService{
 
       postReportePrincipal(fechas: any): Observable<any> {
         const parametros = {
-          idProveedor: this.idProveedor
+          idProveedor: this.idProveedor,
+          anioInicio: fechas.anioInicio,
+          mesInicio: fechas.mesInicio,
+          diaInicio: fechas.diaInicio,
+          anioFin: fechas.anioFin,
+          mesFin: fechas.mesFin,
+          diaFin: fechas.diaFin
         };
     
+        console.log(parametros);
         return this.http.post<any[]>(this.urlGetResumenEstadistico, parametros, cudOptions)
           .pipe(
             map(result => {
+              console.log(result);
             if (result['ok']) {
                 localStorage.setItem('reportePrincipal', JSON.stringify(result['estadisticas']));
               return true;

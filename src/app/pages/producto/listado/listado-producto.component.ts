@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { ProductoService } from './../../../services/producto/producto.service';
 import 'hammerjs';
 import Swal from 'sweetalert2';
@@ -7,6 +7,11 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ModalListadoProductoComponent } from '../modal/modal-listado-producto/modal-listado-producto.component';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import { Router, ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Pipe({
   name: 'filter'
@@ -22,15 +27,25 @@ export class ListadoProductoComponent implements OnInit, PipeTransform {
   @ViewChild(ModalListadoProductoComponent) hijo: ModalListadoProductoComponent;
   serachText: string;
   productos: any[];
+  empaques: any[];
+
+  //paginacion
+  p: number = 1;
+
 
   constructor(private productoServices: ProductoService,
     public ngxSmartModalService: NgxSmartModalService,
-    private spinnerService: Ng4LoadingSpinnerService) {
+    private spinnerService: Ng4LoadingSpinnerService,
+    private route: ActivatedRoute, private router: Router) {
+
     this.spinnerService.show();
     this.getProductos();
+   
   }
 
+
   ngOnInit() {
+
   }
 
   transform(items: any[], searchText: string): any[] {
@@ -44,7 +59,9 @@ export class ListadoProductoComponent implements OnInit, PipeTransform {
     });
   }
 
-
+  pageChange(newPage: number) {
+    this.router.navigate([''], { queryParams: { page: newPage } });
+  }
 
   getProductos() {
 
@@ -52,13 +69,17 @@ export class ListadoProductoComponent implements OnInit, PipeTransform {
     this.productoServices.postGetProductos().subscribe(result => {
       if (result) {
         this.productos = JSON.parse(localStorage.getItem('listadoProductos'));
-        console.log(this.productos);
+        
+        this.obtenerEmpaques();
       }
     });
 
 
   }
 
+  modificar1() {
+    console.log(this.productos);
+  }
   modificar() {
     let productosAModificar = new Array();
     this.productos.forEach(x => {
@@ -98,15 +119,32 @@ export class ListadoProductoComponent implements OnInit, PipeTransform {
   }
 
 
-  visualizarProducto(producto: any){
+  visualizarProducto(producto: any) {
     this.hijo.cargarDatos(producto)
-      this.ngxSmartModalService.getModal('listadoModal').open();
+    this.ngxSmartModalService.getModal('listadoModal').open();
   }
+
+  irImportarProductos() {
+
+  }
+
+
+  obtenerEmpaques() {
+    let arreglo = new Array();
+    this.productos.forEach(x => {
+      arreglo.push(x.empaque);
+    })
+
+    this.empaques = arreglo.filter(function (elem, index, self) {
+      return index === self.indexOf(elem);
+    })
+
+    console.log(this.empaques);
+  }
+
+  goToCarga(){
+    this.router.navigate(['/carga-producto']);
+  }
+
 }
 
-
-/* "idProducto":"5c2fc7a8725ca2694164c2bd",
-			"codigoProveedor": "10",
-    		"precioProveedor": 1500,
-    		"precioSugerido": 2000,
-    		"stock":20*/
