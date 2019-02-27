@@ -44,10 +44,10 @@ export class CargaProductoComponent implements OnInit {
       0: {
         title: 'Codigo de Proveedor'
       },
-      7: {
+      6: {
         title: 'Producto'
       },
-      9: {
+      8: {
         title: 'Empaque',
         type: 'html',
         editor: {
@@ -67,10 +67,10 @@ export class CargaProductoComponent implements OnInit {
       5: {
         title: 'Unidades'
       },
-      8: {
+      7: {
         title: 'Unidad Medida'
       },
-      10: {
+      9: {
         title: 'Stock'
       },
       1: {
@@ -85,7 +85,7 @@ export class CargaProductoComponent implements OnInit {
       4: {
         title: 'Sub categoria'
       },
-      11: {
+      10: {
         title: 'Detalle',
         width: '15%',
         filter: false,
@@ -93,7 +93,7 @@ export class CargaProductoComponent implements OnInit {
           type: 'textarea',
         }
       },
-      12: {
+      11: {
         title: 'Nota Interna',
         width: '15%',
         filter: false,
