@@ -34,7 +34,7 @@ export class LoginService {
 
   constructor(public http: HttpClient, public router: Router) {
     this.cargarStorage();
-   }
+  }
 
   estaLogeado() {
     return (this.token.length > 5 ? true : false);
@@ -44,13 +44,13 @@ export class LoginService {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
       this.usuario = JSON.parse(localStorage.getItem('usuarioCompleto'));
-    }else{
+    } else {
       this.token = '';
       this.usuario = null;
     }
   }
 
-  logout(){
+  logout() {
     this.token = '';
     this.usuario = null;
     localStorage.removeItem('token');
@@ -73,13 +73,13 @@ export class LoginService {
     obs.pipe(
       retry(2)
     ).subscribe();  //permite volver a intentar, en este caso dos veces
-    
+
     return this.http.post<any[]>(this.urlPostGetComercioLogin, parametros, cudOptions);
 
   }
 
   getLoginProveedor(loginModel: LoginModel, recordar: boolean = false): Observable<any> {
-console.log('estoy en servico');
+    console.log('estoy en servico');
     console.log(loginModel);
     const parametros = {
       nombreUsuario: loginModel.nombreUsuario,
@@ -95,18 +95,18 @@ console.log('estoy en servico');
     const newSession = Object.assign({}, parametros);
 
     return this.http.post<any[]>(this.urlPostGetProveedorLogin, newSession, cudOptions)
-    .pipe(
-    map((resp: any) => {
-        console.log(resp);
-        localStorage.setItem('idProveedor', resp.proveedorDB[0]._id);
-        localStorage.setItem('token', resp.usuario.token);
-        localStorage.setItem('proveedor', JSON.stringify(resp.proveedorDB));
-        localStorage.setItem('usuarioCompleto', JSON.stringify(resp.usuario));
+      .pipe(
+        map((resp: any) => {
+          console.log(resp);
+          localStorage.setItem('idProveedor', resp.proveedorDB[0]._id);
+          localStorage.setItem('token', resp.usuario.token);
+          localStorage.setItem('proveedor', JSON.stringify(resp.proveedorDB));
+          localStorage.setItem('usuarioCompleto', JSON.stringify(resp.usuario));
 
-        this.usuario = resp.usuario;
-        this.token = resp.usuario.token;
-        return true;
-      })
-    );
+          this.usuario = resp.usuario;
+          this.token = resp.usuario.token;
+          return true;
+        })
+      );
   }
 }

@@ -54,7 +54,8 @@
                 </div>
 
                 <br><br>
-                <span> <button *ngIf="procesarData" class="btn btn-primary" (click)="procesar(data); t.select('tab-selectbyid2')" float-right>Pre Visualizar</button>
+                <span> <button *ngIf="procesarData" class="btn btn-primary" (click)="procesar(data); t.select('tab-selectbyid2')"
+                    float-right>Continuar</button>
                 </span>
 
               </ng-template>
@@ -70,10 +71,11 @@
                     <ng2-smart-table [settings]="settings" class="table table-hover" [source]="productos" (custom)="onCustom($event)"></ng2-smart-table>
                   </div>
                   <br><br>
-                  <button type="button" (click)="getDataFromTable()" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
-                    Guardar
+                  <button type="button" (click)="getDataFromTable(); t.select('tab-selectbyid3')" class="btn btn-info"
+                    data-toggle="modal" data-target="#exampleModal">
+                    Continuar
                   </button>
-                  
+
 
 
                 </div>
@@ -83,11 +85,97 @@
 
 
             <!--TABSET PARA EL PASO 3 -->
-            <ngb-tab id="tab-selectbyid3" title="3. Vista Preliminar">
+            <ngb-tab id="tab-selectbyid3" title="3. Precio Sugerido">
               <ng-template ngbTabContent>
                 <br><br><br>
-                
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-3" style="height: 80px;">
+                      Tus clientes conocerán su margen de ganancia.
+                    </div>
 
+                    <div class="col-md-6" style="height: 80px;">
+                      Puedes Fijar el precio sugerido de venta incrementando el precio de costo
+                      <ng5-slider [options]="options" [formControl]="sliderControl" (userChange)="onUserChange($event)"></ng5-slider>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+
+                    </div>
+
+                  </div>
+
+                  <div class="miscroll">
+                    <!-- ENCABEZADO -->
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class="text-center">
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Empaque</th>
+                            <th scope="col">Unidades</th>
+                            <th scope="col">Medida</th>
+                            <th scope="col">Precio Costo</th>
+                            <th scope="col">Precio Costo U.</th>
+                            <th scope="col">Precio Sugerido</th>
+                            <th scope="col">Ganancia</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Subategoria</th>
+                            <th scope="col">Accion</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let producto of productoModel.productos ;let i = index ">
+                          <tr>
+
+
+                            <td> {{ i }}</td>
+                            <td> {{producto.codigoProveedor}}</td>
+                            <td> {{producto.nombreProducto}}</td>
+                            <td> {{producto.empaque}}
+                            </td>
+                            <td> {{producto.unidadesPorEmpaque}}</td>
+                            <td> {{producto.unidadMedida}}</td>
+                            <td> {{+producto.precioProveedor * +producto.unidadesPorEmpaque}}</td>
+                            <td> {{producto.precioProveedor}}</td>
+                            <td>{{producto.precioSugerido}}</td>
+                            <td>{{(+producto.precioSugerido * +producto.unidadesPorEmpaque) -
+                              (+producto.precioProveedor * +producto.unidadesPorEmpaque)}}</td>
+                            <td> {{producto.categoria}}</td>
+                            <td> {{producto.subcategoria}}</td>
+
+
+                            <div class="col-md-1"><button type="button" class="btn btn-info" data-toggle="modal"
+                                data-target="#exampleModal">
+                                Detalle
+                              </button></div>
+
+                            <td>
+                              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+
+                                  <button type="button" class="btn-sm btn btn-success">Detalle</button>
+
+                                </div>
+                              </div>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-3" style=" height: 500px;">
+                    <button type="button" class="btn btn-info">
+
+                      Finalizar
+                    </button>
+                  </div>
+                </div>
               </ng-template>
             </ngb-tab>
           </ngb-tabset>

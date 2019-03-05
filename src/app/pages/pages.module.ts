@@ -42,6 +42,10 @@ import { InicioClientesComponent } from './clientes/inicio-clientes/inicio-clien
 import { PaginationModule } from 'ngx-pagination-bootstrap'
 import { NgxPaginationModule } from 'ngx-pagination';
 
+//slider
+import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
+import { Ng5SliderModule } from 'ng5-slider';
+
 @NgModule({
     declarations: [
         DashboardComponent,
@@ -66,6 +70,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ],
     imports: [
         Ng2SmartTableModule,
+        Ng5SliderModule,
         DataTablesModule,
         Ng2SearchPipeModule,
         NgbModule,
@@ -79,7 +84,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
         PaginationModule,
         NgxSmartModalModule.forRoot(),
         NgxPaginationModule,
-        Ng4LoadingSpinnerModule.forRoot()
+        Ng4LoadingSpinnerModule.forRoot(),
+        NgxBootstrapSliderModule
     ],
     providers: [
 

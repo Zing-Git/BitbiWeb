@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ModalXlsxProductoComponent } from '../modal/modal-xlsx/modal-xlsx-producto.component';
 import { ProductoModel } from 'src/app/modelos/productoModel';
 import { ProductoService } from 'src/app/services/producto/producto.service';
@@ -8,6 +8,9 @@ import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import { Producto } from './../model/producto';
 import { LocalDataSource } from 'ng2-smart-table';
+import { FormControl } from '@angular/forms';
+
+import { Options , ChangeContext } from 'ng5-slider';
 
 @Component({
   selector: 'app-carga-producto',
@@ -29,7 +32,22 @@ export class CargaProductoComponent implements OnInit {
 
   empaques: any[] = new Array();
 
+  progreso1: number = 50;
+  progreso2: number = 30;
+
   source: LocalDataSource = new LocalDataSource();
+
+  //slider https://www.npmjs.com/package/ngx-bootstrap-slider
+  value: number = 5;
+  enabled: boolean = true;
+
+  //ng5 slider
+  sliderControl: FormControl = new FormControl(100);
+
+  options: Options = {
+    floor: 0,
+    ceil: 250
+  };
 
   settings = {
     actions: {
@@ -54,12 +72,11 @@ export class CargaProductoComponent implements OnInit {
           type: 'list',
           config: {
             list: this.empaques
-                 
-          
+
+
           }
         },
         valuePrepareFunction: (cell) => {
-          console.log(cell);
           return cell;
           //return this.findDayNameById(cell);
         }
@@ -115,7 +132,9 @@ export class CargaProductoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.source = new LocalDataSource([]); 
+    this.source = new LocalDataSource([]);
+
+
   }
 
   procesar() {
@@ -123,10 +142,10 @@ export class CargaProductoComponent implements OnInit {
     this.productos = this.data;
     this.productoModel.Producto = this.productos;
     this.obtenerEmpaques();
-    console.log(this.productoModel);
+
     this.tabs1 = true;
 
-    this.source = new LocalDataSource([]); 
+    this.source = new LocalDataSource([]);
     this.source.load(this.productos);
     this.source.load(this.productos.slice(0));
   }
@@ -134,10 +153,8 @@ export class CargaProductoComponent implements OnInit {
   obtenerEmpaques() {
     let arreglo = new Array();
     let filtroArreglo = new Array();
-    //this.empaques = new Array();
+
     this.productos.forEach(x => {
-      console.log('EN EMPAQUE');
-      
       arreglo.push(x[9]);
     })
 
@@ -145,15 +162,14 @@ export class CargaProductoComponent implements OnInit {
       return index === self.indexOf(elem);
     })
 
-    console.log(filtroArreglo);
-    //crear una lista con value title
-    filtroArreglo.forEach(x =>{
+
+    filtroArreglo.forEach(x => {
       this.empaques.push({
-      value: x,
-      title: x
-    });
+        value: x,
+        title: x
+      });
     })
-    console.log(this.empaques);
+
   }
 
 
@@ -211,13 +227,87 @@ export class CargaProductoComponent implements OnInit {
 
   }
 
-  getDataFromTable(){
-    let data = [];
-    this.source.getAll().then(value => { 
-        value.forEach(element => {
-            data.push(element); 
-        });;
-    });
-    console.log(data);
+  goNextTab() {
+    this.getDataFromTable();
   }
+
+  getDataFromTable() {
+    let data = new Array();
+    let primerPaso = false; //para el titulo
+
+    this.source.getAll().then(value => {
+      value.forEach(element => {
+        console.log(element);
+        if (primerPaso === true) {
+          let producto = {
+            codigoProveedor: element[0],
+            nombreProducto: element[6],
+            empaque: element[8],
+            unidadesPorEmpaque: element[5],
+            precioProveedor: element[1],
+            precioSugerido: element[2],
+            categoria: element[3],
+            subcategoria: element[4],
+            stock: element[9],
+            unidadMedida: element[7],
+          };
+          console.log(producto);
+          data.push(producto);
+
+          //data.push(element);
+        } else {
+          primerPaso = true;
+        }
+
+      });;
+    });
+    this.productoModel.productos = data;
+    console.log(data);
+    //let primerPaso = false; //para el titulo
+    /*data.forEach(x => {
+      console.log('estoy en el foreach');
+      if (primerPaso === true) {
+        let producto = {
+          codigoProveedor: x[0],
+          nombreProducto: x[6],
+          precioProveedor: x[1],
+          precioSugerido: x[2],
+          categoria: x[3],
+          subcategoria: x[4],
+          stock: x[9],
+          unidadMedida: x[7],
+        };
+        console.log(producto);
+        this.productoModel.productos.add(producto);
+      } else {
+        primerPaso = true;
+      }
+      
+    });*/
+
+    console.log(this.productoModel.productos);
+  }
+
+  cambiarData(parametro: any) {
+    console.log('cambio');
+    console.log(parametro);
+    /*newValue: 7​
+    oldValue: 5*/
+    for (var i = 0; i <  this.productoModel.productos.length; i++) {
+      
+      this.productoModel.productos[i].precioSugerido =
+               this.productoModel.productos[i].precioSugerido + parametro.newValue;
+
+    }
+    
+  }
+//https://angular-slider.github.io/ng5-slider/demos#user-events-slider
+  formatter(parametro: any){
+    return 'valor : '+ parametro;
+  }
+
+  onUserChange(changeContext: any): void {
+    console.log(changeContext);
+  }
+  
 }
