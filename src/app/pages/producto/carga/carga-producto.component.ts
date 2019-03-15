@@ -10,7 +10,7 @@ import { Producto } from './../model/producto';
 import { LocalDataSource } from 'ng2-smart-table';
 import { FormControl } from '@angular/forms';
 
-import { Options , ChangeContext } from 'ng5-slider';
+import { Options, ChangeContext } from 'ng5-slider';
 
 @Component({
   selector: 'app-carga-producto',
@@ -18,7 +18,7 @@ import { Options , ChangeContext } from 'ng5-slider';
   styleUrls: ['./carga-producto.component.scss']
 })
 export class CargaProductoComponent implements OnInit {
-
+//https://www.cubicfactory.com/bootstrap-tablas-responsive-con-stacktable/  TABLAS
   @ViewChild(ModalXlsxProductoComponent) hijo: ModalXlsxProductoComponent;
   productoModel: any = new ProductoModel();
 
@@ -26,7 +26,8 @@ export class CargaProductoComponent implements OnInit {
   procesarData: boolean = false;
   data: any[];
   productos: Producto[];
-  productoIndividual: Producto;
+  
+
   tabs1: boolean = false;
   tbas2: boolean = false;
 
@@ -38,16 +39,21 @@ export class CargaProductoComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   //slider https://www.npmjs.com/package/ngx-bootstrap-slider
-  value: number = 5;
-  enabled: boolean = true;
+  //value: number = 5;
+  //enabled: boolean = true;
 
   //ng5 slider
-  sliderControl: FormControl = new FormControl(100);
+  sliderControl: FormControl = new FormControl(0);
 
   options: Options = {
     floor: 0,
-    ceil: 250
+    ceil: 200
   };
+
+  valorAComparar: number = 0;
+  cambioDeValor: boolean = false;
+  listadoInicial: any;
+  listadoFinal: any;
 
   settings = {
     actions: {
@@ -237,7 +243,7 @@ export class CargaProductoComponent implements OnInit {
 
     this.source.getAll().then(value => {
       value.forEach(element => {
-        console.log(element);
+
         if (primerPaso === true) {
           let producto = {
             codigoProveedor: element[0],
@@ -251,7 +257,7 @@ export class CargaProductoComponent implements OnInit {
             stock: element[9],
             unidadMedida: element[7],
           };
-          console.log(producto);
+
           data.push(producto);
 
           //data.push(element);
@@ -262,52 +268,66 @@ export class CargaProductoComponent implements OnInit {
       });;
     });
     this.productoModel.productos = data;
-    console.log(data);
-    //let primerPaso = false; //para el titulo
-    /*data.forEach(x => {
-      console.log('estoy en el foreach');
-      if (primerPaso === true) {
-        let producto = {
-          codigoProveedor: x[0],
-          nombreProducto: x[6],
-          precioProveedor: x[1],
-          precioSugerido: x[2],
-          categoria: x[3],
-          subcategoria: x[4],
-          stock: x[9],
-          unidadMedida: x[7],
-        };
-        console.log(producto);
-        this.productoModel.productos.add(producto);
-      } else {
-        primerPaso = true;
-      }
-      
-    });*/
 
-    console.log(this.productoModel.productos);
   }
 
-  cambiarData(parametro: any) {
-    console.log('cambio');
-    console.log(parametro);
-    /*newValue: 7​
-    oldValue: 5*/
-    for (var i = 0; i <  this.productoModel.productos.length; i++) {
-      
-      this.productoModel.productos[i].precioSugerido =
-               this.productoModel.productos[i].precioSugerido + parametro.newValue;
-
-    }
-    
-  }
-//https://angular-slider.github.io/ng5-slider/demos#user-events-slider
-  formatter(parametro: any){
-    return 'valor : '+ parametro;
-  }
+  //https://angular-slider.github.io/ng5-slider/demos#user-events-slider
+  //formatter(parametro: any){
+  //  return 'valor : '+ parametro;
+  //}
 
   onUserChange(changeContext: any): void {
-    console.log(changeContext);
+   
+    if (this.cambioDeValor === false) { 
+      localStorage.setItem('productosInicial', JSON.stringify(this.productoModel.productos));
+      this.cambioDeValor = true;
+    }
+
+    
+    this.productoModel.productos = JSON.parse(localStorage.getItem('productosInicial'));
+    for (var i = 0; i < this.productoModel.productos.length; i++) {
+
+      let porcentaje = ( changeContext.value * this.productoModel.productos[i].precioProveedor) / 100;
+      this.productoModel.productos[i].precioSugerido =
+        this.productoModel.productos[i].precioSugerido + porcentaje;
+
+    }
+    this.listadoFinal = this.productoModel.productos;
+
+    if (changeContext.value === 0) {
+      
+      this.productoModel.productos = JSON.parse(localStorage.getItem('productosInicial'));
+    }
   }
-  
+
+  guardarProductos(){
+    console.log(this.productoModel);
+    this.productoServices.postProducto(this.productoModel).subscribe(result => {
+      console.log('REGRESANDO DE GUARDAR PROVEEDORES');
+      console.log(result);
+      if (result) {
+        Swal.fire({
+
+          text: 'Se guardaron los productos correctamente',
+          type: 'success',
+          showCancelButton: false,
+          confirmButtonText: 'ACEPTAR!',
+          confirmButtonColor: '#488aff',
+          animation: true
+        }).then(resultado => {
+          console.log(resultado);
+          if (resultado) {
+            //this.spinnerService.show();
+            //this.getProductos();
+            location.reload();
+          }
+
+        })
+        //Swal('Felicidades', 'Se actualizaron los productos correctamente', 'success');
+
+      } else {
+        Swal.fire('Error', 'Ocurrio un problema, vuelva a intentar!', 'error');
+      }
+    });
+  }
 }

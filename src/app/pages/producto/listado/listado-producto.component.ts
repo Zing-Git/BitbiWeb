@@ -26,7 +26,7 @@ export class ListadoProductoComponent implements OnInit, PipeTransform {
 
   @ViewChild(ModalListadoProductoComponent) hijo: ModalListadoProductoComponent;
   serachText: string;
-  productos: any[];
+  productos: any[] = new Array();
   empaques: any[];
 
   //paginacion
@@ -40,12 +40,12 @@ export class ListadoProductoComponent implements OnInit, PipeTransform {
 
     this.spinnerService.show();
     this.getProductos();
-   
+    console.log(this.productos);
   }
 
 
   ngOnInit() {
-
+    
   }
 
   transform(items: any[], searchText: string): any[] {
@@ -74,7 +74,7 @@ export class ListadoProductoComponent implements OnInit, PipeTransform {
       }
     });
 
-
+    
   }
 
   modificar1() {
@@ -139,7 +139,7 @@ export class ListadoProductoComponent implements OnInit, PipeTransform {
       return index === self.indexOf(elem);
     })
 
-    console.log(this.empaques);
+    
   }
 
   goToCarga(){

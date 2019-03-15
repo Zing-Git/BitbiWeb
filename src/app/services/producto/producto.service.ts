@@ -32,6 +32,7 @@ export class ProductoService {
     return this.http.post<any>(this.urlPostNuevoProducto, newSession, cudOptions)
       .pipe(
         map(result => {
+          console.log('ESTOY EN SERVICIO Y VEO RESULT AHORA');
         console.log(result);
         if (result['ok']) {
           return true;

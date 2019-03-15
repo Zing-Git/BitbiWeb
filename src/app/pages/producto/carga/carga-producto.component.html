@@ -94,19 +94,19 @@
                       Tus clientes conocerán su margen de ganancia.
                     </div>
 
-                    <div class="col-md-6" style="height: 80px;">
+                    <div class="col-md-6" >
                       Puedes Fijar el precio sugerido de venta incrementando el precio de costo
                       <ng5-slider [options]="options" [formControl]="sliderControl" (userChange)="onUserChange($event)"></ng5-slider>
                       <br>
                       <br>
                       <br>
-                      <br>
+                      
 
                     </div>
 
                   </div>
 
-                  <div class="miscroll">
+                  
                     <!-- ENCABEZADO -->
                     <div class="table-responsive">
                       <table class="table">
@@ -127,30 +127,23 @@
                             <th scope="col">Accion</th>
                           </tr>
                         </thead>
-                        <tbody *ngFor="let producto of productoModel.productos ;let i = index ">
+                        <tbody *ngFor="let producto of productoModel.productos  |  paginate: { itemsPerPage: 5, currentPage: p } ;let i = index ">
                           <tr>
 
 
                             <td> {{ i }}</td>
                             <td> {{producto.codigoProveedor}}</td>
                             <td> {{producto.nombreProducto}}</td>
-                            <td> {{producto.empaque}}
-                            </td>
+                            <td> {{producto.empaque}} </td>
                             <td> {{producto.unidadesPorEmpaque}}</td>
                             <td> {{producto.unidadMedida}}</td>
-                            <td> {{+producto.precioProveedor * +producto.unidadesPorEmpaque}}</td>
-                            <td> {{producto.precioProveedor}}</td>
-                            <td>{{producto.precioSugerido}}</td>
-                            <td>{{(+producto.precioSugerido * +producto.unidadesPorEmpaque) -
+                            <td> {{+producto.precioProveedor * +producto.unidadesPorEmpaque}} </td>
+                            <td> {{producto.precioProveedor}} </td>
+                            <td> {{producto.precioSugerido | currency}} </td>
+                            <td> {{(+producto.precioSugerido * +producto.unidadesPorEmpaque) -
                               (+producto.precioProveedor * +producto.unidadesPorEmpaque)}}</td>
-                            <td> {{producto.categoria}}</td>
-                            <td> {{producto.subcategoria}}</td>
-
-
-                            <div class="col-md-1"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#exampleModal">
-                                Detalle
-                              </button></div>
+                            <td> {{producto.categoria}} </td>
+                            <td> {{producto.subcategoria}} </td>
 
                             <td>
                               <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -167,10 +160,10 @@
                       </table>
 
                     </div>
-                  </div>
+                    <pagination-controls (pageChange)="p = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
 
                   <div class="col-md-3" style=" height: 500px;">
-                    <button type="button" class="btn btn-info">
+                    <button type="button" class="btn btn-info" (click)="guardarProductos()">
 
                       Finalizar
                     </button>

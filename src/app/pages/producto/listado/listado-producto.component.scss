@@ -1,44 +1,5 @@
 page-listado-producto{
 
-    /* Tabla resposniva*/
-
-#resp-table {
-    width: 100% !important;
-    display: table !important;
-  }
-  
-  #resp-table-caption {
-    display: table-caption !important;
-    text-align: center !important;
-    font-size: 30px !important;
-    font-weight: bold !important;
-  }
-  
-  .table-header-cell {
-    display: table-cell !important;
-    padding: 10px !important;
-    text-align: justify !important;
-    border-bottom: 1px solid blac !important;
-  }
-  
-  #resp-table-body {
-    display: table-row-group !important;
-  }
-  
-  .resp-table-row {
-    display: table-row !important;
-  }
-  
-  .table-body-cell {
-    display: table-cell !important;
-  }
-
-  #resp-table-footer {
-    display: table-footer-group !important;
-    background-color: gray !important;
-    font-weight: bold !important;
-    font-size: 25px !important;
-    color: rgba(255, 255, 255, 0.45) !important;
-    }
+   
   
 }
