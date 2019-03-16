@@ -18,60 +18,64 @@
     </div>
   </div>
   <br><br>
-  <div class="container">
-    <!-- ENCABEZADO -->
-    <div class="row bg-info text-white text-center">
-      
-      <div class="col-md-1">Codigo</div>
-      <div class="col-md-1">Producto</div>
-      <div class="col-md-1">Empaque</div>
-      <div class="col-md-1">Unidad</div>
-      <div class="col-md-1">U. Medida</div>
-      <div class="col-md-1">Stock</div>
-      <div class="col-md-1">Precio Proveedor</div>
-      <div class="col-md-1">Precio Sugerido</div>
-      <div class="col-md-1">Categoria</div>
-      <div class="col-md-1">Sub categoria</div>
-      <div class="col-md-2">Acciones </div>
+  <!-- ENCABEZADO -->
+  <div class="table table-responsive">
+    <table class="table">
+      <thead class="text-center">
+        <tr>
 
-    </div>
+          <th >Codigo</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Empaque</th>
+          <th scope="col">Unida</th>
+          <th scope="col">U. Medidaa</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Precio Costo U.</th>
+          <th scope="col">Precio Sugerido</th>
+          <th scope="col">Categoriacia</th>
+          <th scope="col">Sub categoria</th>
+          <th scope="col">Acciones</th>
 
-    <!-- CONTENIDO -->
-    <div class="row  text-center" *ngFor="let producto of productos |  paginate: { itemsPerPage: 5, currentPage: p }">
-      
-      <div class="col-md-1"><input [(ngModel)]="producto.codigoProveedor" type="text" [disabled]="!producto.isEditable"></div>
-      <div class="col-md-1"><input [(ngModel)]="producto.nombreProducto" type="text" [disabled]="!producto.isEditable"></div>
-      <div class="col-md-1">
-        <select [(ngModel)]="producto.empaque" [disabled]="!producto.isEditable">
-          <option *ngFor="let c of empaques" [ngValue]="c">{{c}}</option>
-        </select>
+        </tr>
+      </thead>
+      <tbody *ngFor="let producto of productos |  paginate: { itemsPerPage: 5, currentPage: p }">
+        <tr>
 
-      </div>
-      <div class="col-md-1"><input [(ngModel)]="producto.unidadesPorEmpaque" type="number" [disabled]="!producto.isEditable"></div>
-      <div class="col-md-1"><input [(ngModel)]="producto.unidadMedida" type="number" [disabled]="!producto.isEditable"></div>
-      <div class="col-md-1"><input [(ngModel)]="producto.stock" type="number" [disabled]="!producto.isEditable"></div>
-      <!--empaque-->
-      <div class="col-md-1"><input [(ngModel)]="producto.precioProveedor" type="number" [disabled]="!producto.isEditable"></div>
-      <div class="col-md-1"> <input [(ngModel)]="producto.precioSugerido" type=" number" [disabled]="!producto.isEditable"></div>
-      <div class="col-md-1"><input [(ngModel)]="producto.categoria" type="text" [disabled]="!producto.isEditable"></div>
-      <div class="col-md-1"> <input [(ngModel)]="producto.subcategoria" type="text" [disabled]="!producto.isEditable"></div>
+          <td ><input [(ngModel)]="producto.codigoProveedor" type="text" [disabled]="!producto.isEditable"></td>
+          <td><input [(ngModel)]="producto.nombreProducto" type="text" [disabled]="!producto.isEditable"></td>
+          <td> <select [(ngModel)]="producto.empaque" [disabled]="!producto.isEditable">
+              <option *ngFor="let c of empaques" [ngValue]="c">{{c}}</option>
+            </select>
+          </td>
+          <td> <input [(ngModel)]="producto.unidadesPorEmpaque" type="number" [disabled]="!producto.isEditable"></td>
+          <td> <input [(ngModel)]="producto.unidadMedida" type="number" [disabled]="!producto.isEditable"></td>
+          <td> <input [(ngModel)]="producto.stock" type="number" [disabled]="!producto.isEditable"></td>
+          <td> <input [(ngModel)]="producto.precioProveedor" type="number" [disabled]="!producto.isEditable"> </td>
+          <td> <input [(ngModel)]="producto.precioSugerido" type=" number" [disabled]="!producto.isEditable"> </td>
 
-      <div class="col-md-2">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <td> <input [(ngModel)]="producto.categoria" type="text" [disabled]="!producto.isEditable"> </td>
 
-          <button type="button" class="btn-sm btn btn-primary" (click)="producto.isEditable=!producto.isEditable" *ngIf="!producto.isEditable">Modificar</button>
-          <button type="button" class="btn-sm btn btn-secondary" *ngIf="producto.isEditable" (click)="producto.isEditable=!producto.isEditable">Guardar</button>
-          <button type="button" class="btn-sm btn btn-danger">Eliminar</button>
-          <button type="button" class="btn-sm btn btn-success" (click)="visualizarProducto(producto)">Detalle</button>
-          <button type="button" class="btn-sm btn btn-info">Ocultar</button>
+          <td> <input [(ngModel)]="producto.subcategoria" type="text" [disabled]="!producto.isEditable"> </td>
 
-        </div>
-      </div>
+          <td>
+            <div class="btn-group mr-2" role="group" aria-label="First group">
 
-    </div>
-    <pagination-controls (pageChange)="p = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
+              <button type="button" class="btn-sm btn btn-primary" (click)="producto.isEditable=!producto.isEditable"
+                *ngIf="!producto.isEditable">Modificar</button>
+              <button type="button" class="btn-sm btn btn-secondary" *ngIf="producto.isEditable" (click)="producto.isEditable=!producto.isEditable">Guardar</button>
+              <button type="button" class="btn-sm btn btn-danger">Eliminar</button>
+              <button type="button" class="btn-sm btn btn-success" (click)="visualizarProducto(producto)">Detalle</button>
+              <button type="button" class="btn-sm btn btn-info">Ocultar</button>
+
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
-
+  <pagination-controls (pageChange)="p = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
   <div class="container">
     <button class="btn btn-primary" (click)="modificar()">Modificar</button>
   </div>
